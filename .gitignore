@@ -1,0 +1,65 @@
+# Local Python environments and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+*.egg-info/
+
+# Build output and browser dependencies
+build/
+dist/
+node_modules/
+playwright-report/
+test-results/
+
+# Secrets and local configuration (keep sanitized examples)
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+/Jobscraper/config.json
+
+# Candidate data and generated application artifacts
+/llm-cv/okf/base_files/
+/llm-cv/okf/SAGAR_MARTHANDAN_*
+/llm-cv/okf/project_catalog*.yaml
+/llm-cv/okf/project_mappings.yaml
+Applications/
+Job Search/
+/Jobscraper/linkedin_comparison/
+/uploads/
+/artifacts/
+/data/
+*.sqlite
+*.sqlite3
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3-wal
+*.sqlite3-shm
+
+# Runtime caches and logs
+.cache/
+.jd_cache/
+.font_cache.json
+.location_cache.json
+*.log
+
+# Local editors, agent state and operating-system files
+.vscode/
+.idea/
+.commandcode/
+*.code-workspace
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db

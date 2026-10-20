@@ -1,0 +1,14 @@
+I want to unify these 2 skill pielines into one single application -> a single job finding application 
+I want to the make the jobsearch and resume maker to be dynamic 
+I want to remove my reusme/project catalog etc 
+I want the job scraper to first scrape the jobs as per the skillset of the uploaded CV and GIThub profile
+I want the resume maker also to generate resumes based on my resume, projects, work exp and github profile
+
+Give me a plan and agemt.md file, lets discuss hwo to proceed and also 
+
+the initial agent.MD file has to contain this 
+
+- always the master i.e. openAI-GPT-Sol-6.1 acts as the orchestrator 
+- It always uses either OpenAI-GPT-Luna-6 or OpencodeGo-Deepseek-Flash-v4.1 to execute and write scripts. 
+- like a master servant relationship
+- I only want to use fromtier models for orcestrtion and planning and not to do menial tasks. 
