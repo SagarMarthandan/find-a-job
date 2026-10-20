@@ -43,7 +43,7 @@ This section governs agents developing this repository only. It does not restric
 
 ## Delivered skill portability
 
-- Deliver a portable `SKILL.md`, shared Python core and CLI stages with documented structured input/output contracts. Keep the web application an additional interface, not a prerequisite for skill execution.
+- Deliver a portable `SKILL.md`, shared Python core and CLI stages with documented structured input/output contracts. Skill invocation must start/reuse the localhost dashboard, open its tab and service the two-way host task queue in the background. Direct CLI use remains available; no universal harness push API may be assumed.
 - Support host-driven language tasks using the harness's chosen model without nested provider credentials, and standalone execution through configured model-client adapters. Local and remote model choices must not be subject to the development allowlist.
 - Do not require OMP APIs, subagents, native tool calling, native JSON mode or fixed MCP tool names in the core. Isolate host-specific features in optional adapters; validate model responses in application code.
 - Provide a supported API/CLI route for integrations when a harness lacks MCP. Document minimum execution capabilities and actionable failures; do not promise tool execution in a chat-only environment.
@@ -58,7 +58,7 @@ This section governs agents developing this repository only. It does not restric
 - Follow the dependency inventory and environment acceptance requirements in `PLAN.md`. Audit actual imports and subprocess calls; existing manifests are incomplete.
 - Approved execution workers perform installation and smoke checks. The orchestrator reviews evidence and must not bypass worker routing for setup work.
 - Distinguish local packages, CLIs, agent plugins, MCP servers and remote APIs. Do not assume this session's tools or credentials exist in the deployed application.
-- Include TinyFish setup and Firecrawl connectivity, authentication and capability verification. Preserve the documented failure-only fallback order unless the user approves a change.
+- Use visible browser navigation for dashboard scraping and JD research, with synchronized text/screenshots and explicit failures. TinyFish/Firecrawl setup remains a separate integration requirement; do not silently replace the user-selected visible-browser workflow with API fetching.
 - Pin supported dependencies and use lockfiles. Install optional integrations only when enabled; never install unrelated plugins or silently grant permissions.
 - Keep credentials out of source control and logs. Obtain required authorization for privileged changes, account permissions, personal-data transfers and chargeable verification.
 - Report installed, authenticated and exercised as separate states. Missing credentials or unavailable services are unresolved dependencies, not successful setup.

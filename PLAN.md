@@ -1,10 +1,18 @@
 # Unified job-finding application
 
-Status: proposed design for discussion. No application code or personal files change in this planning step.
+Status: intake-first foundation is the current priority; job-search/Jobscraper implementation is explicitly deferred pending user direction. This plan remains the broader proposed design.
+
+## Current priority and deferred scope
+
+The first workflow is candidate intake from uploaded resumes, all supplied project catalogs, candidate-entered facts, and explicitly selected public GitHub URLs. Consolidate those sources into one evidence-linked profile, validate source-specific quotes, support correction and explicit approval, and gate resume generation on approval. Keep every source's identity and failure visible.
+
+Supported intake formats are PDF, DOCX, ODT, XLSX, PPTX, RTF, Markdown/TXT, JSON/YAML, CSV/TSV, HTML/XML, and the configured UTF-8 text suffixes PY, JS, TS, Java, SQL, TOML, and INI. Limits: 25 sources, 10 MiB per file, 50 MiB total upload bytes, 100000 extracted characters per document, 1 MB aggregate extracted text, and 40 MiB expanded Office ZIP content. Scanned PDFs require OCR; unsupported sources remain attached as failed entries.
+
+Do not extend `Jobscraper/`, implement job search, or import its personal catalogs as part of intake foundation work. Search and resume tailoring remain later-stage scope; preserve legacy source trees and originals until separately authorized migration.
 
 ## Goal
 
-Build one application where a candidate uploads a CV, connects a GitHub profile, reviews extracted facts and search preferences, finds suitable jobs, and generates a truthful tailored resume from the same candidate profile.
+Build one application where a candidate uploads a CV, connects selected GitHub evidence, reviews extracted facts and search preferences, finds suitable jobs, and generates a truthful tailored resume from the same candidate profile.
 
 Deliver the unified pipeline as a harness-agnostic, model-agnostic skill as well as an application. A user chooses the harness, provider and model; the runtime must not require the repository's development models.
 
@@ -28,9 +36,9 @@ These are inspection findings, not live integration verification. Existing sourc
 
 ## Proposed product boundary
 
-Build a portable skill and shared Python core first. The skill, CLI and local-first web application use the same workflow and schemas. The CLI path must not require the web server. Keep records candidate-scoped so another profile cannot inherit facts or application history. Do not add hosted multi-user accounts until deployment requirements justify authentication and tenant isolation.
+The skill starts or reuses the localhost dashboard and keeps the host-driven task bridge active. The skill, CLI and web interface share the same workflow, schemas and SQLite state. Direct CLI access remains available, but skill invocation must open the dashboard rather than offering a CLI-only default. Keep records candidate-scoped so another profile cannot inherit facts or application history. Do not add hosted multi-user accounts until deployment requirements justify authentication and tenant isolation.
 
-Recommended application stack: Python services, FastAPI, SQLite, and a small server-rendered UI. Keep existing Python integrations where practical. Use one durable background worker for long searches and PDF generation; persist task state in SQLite. Keep web-only dependencies separate from the skill/CLI installation. No microservices or vector database initially.
+Application stack: Python, FastAPI, SQLite and a vanilla HTML/JavaScript dashboard. Run visible Playwright browser research on a dedicated worker thread; the host-selected model handles queued language tasks and ReportLab renders reviewable PDFs. No microservices or vector database.
 
 Initial screens:
 
@@ -63,7 +71,7 @@ find-a-job/
     integrations/            # model, fetch and optional harness adapters
     workflow.py              # shared orchestration/state transitions
     cli.py                   # skill/CLI entrypoint
-    web/                     # optional application interface
+    web/                     # dashboard opened by skill invocation
   resources/                 # portable prompts and non-personal templates
   config/                    # secret-free integration examples
   tests/
@@ -155,7 +163,9 @@ Publish a tested compatibility matrix with harness/model versions, capabilities 
 
 ## Dependency and environment deliverable
 
-The application deliverable includes a reproducible environment, service integrations and setup verification, not just application source. Implement this during Phase 0 and extend it with each feature. This section specifies future setup work; it does not claim anything is installed.
+The application deliverable includes a reproducible environment, service integrations and setup verification, not just application source. Implement this during Phase 0 and extend it with each feature. The implementation note below distinguishes installed/exercised components from outstanding integrations.
+
+Implementation note (2026-10-20): the local integration smoke now covers authenticated API/CLI task sharing, visible Playwright navigation and screenshot capture, synthetic profile evidence, host-generated resume content, PDF rendering, private URL rejection, wrong-owner rejection, and cancellation races. The permanent `unittest` suite passed four focused security/state tests. `find-a-job doctor` reported Python 3.12.12, `DISPLAY=:1`, dependencies, and Chromium installed. This run exercised one host-driven model (`openai-codex/gpt-6-luna`); it did not test a clean environment setup, a second harness/model, a standalone provider adapter, or the portability matrix. The embedded PDF viewer appeared black in a hidden-browser screenshot; the generated PDF itself passed text extraction and local visual rendering. The service has no universal push API; the host must keep polling claims.
 
 ### Local environment
 
@@ -187,7 +197,7 @@ The existing Python requirements file lists only three packages, while the READM
 
 - Track each integration's purpose, required/optional status, version, install source, configuration location, credential names, permissions, cost/limits and verification command.
 - TinyFish is currently a CLI dependency. Firecrawl is currently a launcher-mounted MCP dependency. They are not interchangeable packages and need separate setup instructions.
-- Preserve the current URL-fetch policy unless deliberately changed: TinyFish first, Firecrawl only after failure or unusable content, then Jina, then manual JD input. Pasted JDs bypass fetching.
+- The user's visible-browser requirement supersedes TinyFish-first fetching for the dashboard workflow: visit pages in headed Chromium and synchronize captured text/screenshots with the harness. Do not silently substitute API scraping if the browser fails. TinyFish → Firecrawl → Jina remains the legacy fetch policy and a potential separately selected integration mode, not the current dashboard execution path.
 - The standalone app must have access to its own configured fetch/judgment clients. It must not assume access to this chat session's MCP tools. Implement and verify a supported API/CLI route as well as MCP integration so lack of MCP support does not lock the skill to one harness.
 - Supply configuration templates for supported harness adapters and MCP transports. Keep the core skill independent of those templates and secrets outside tracked configuration; never auto-grant broad filesystem, shell or private-repository access.
 - Optional integrations can be disabled without breaking unrelated features. If an enabled required capability is missing, show an actionable error rather than treating it as an empty search.
@@ -195,7 +205,7 @@ The existing Python requirements file lists only three packages, while the READM
 
 ### Environment acceptance
 
-An approved development worker must demonstrate setup from a clean environment: dependency resolution from lockfiles, package imports, skill/CLI execution without the web extra, application startup, browser launch where required, synthetic CV parsing, database persistence, PDF rendering/text inspection and a user-selected runtime model call. Verify the development worker identity separately. Verify TinyFish authentication and same-URL extraction, then exercise the configured Firecrawl path independently with an authorized public page. Exercise fallback selection through a controlled primary failure without changing the requested posting. Complete the portability acceptance matrix before release.
+An approved development worker must demonstrate setup from a clean environment: dependency resolution from lockfiles, package imports, application startup, actual visible browser launch, synthetic CV parsing, database persistence, PDF rendering/text inspection and a user-selected runtime model call. Verify the development worker identity separately. TinyFish/Firecrawl authentication and fallback checks remain required before claiming those optional integration paths work. Complete the portability acceptance matrix before release.
 
 Record observed versions and outcomes, including missing credentials, unavailable MCP capabilities and provider failures. Do not describe a capability as working merely because a CLI or MCP server is installed. Obtain authorization before privileged installs, permission grants, personal-data disclosure or chargeable external checks.
 

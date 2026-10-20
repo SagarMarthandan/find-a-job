@@ -11,4 +11,13 @@ the initial agent.MD file has to contain this
 - always the master i.e. openAI-GPT-Sol-6.1 acts as the orchestrator 
 - It always uses either OpenAI-GPT-Luna-6 or OpencodeGo-Deepseek-Flash-v4.1 to execute and write scripts. 
 - like a master servant relationship
-- I only want to use fromtier models for orcestrtion and planning and not to do menial tasks. 
+- I only want to use fromtier models for orcestrtion and planning and not to do menial tasks.
+
+
+ALso this this skill ( unified pipeline ) must me Harness and Model agnostic. Should work as a skill in any harness and any chosen model .. the quality of the putput depends on the model seletecd ( disclaimer ).
+
+Now
+
+- create a skill.md that can execute It
+- need a dashboard that will run as localhost when the skill is executed in any harness...
+- all the work scraping, resume generation, JD research -> must run in the browsertab that has a sync with the hanress ( running background)

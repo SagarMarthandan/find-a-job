@@ -1,0 +1,950 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light"><title>Find a Job — Dashboard</title>
+<style>
+:root{font:16px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#17211e;background:#f3f6f3;--ink:#17211e;--muted:#65726c;--line:#dce5df;--green:#16745b;--pale:#e8f3ed;--white:#fff;--amber:#8b5a0a;--red:#9d392a;--review:#7a5410}*{box-sizing:border-box}body{margin:0}header{background:#103d32;color:white;padding:1.1rem max(1.25rem,calc((100vw - 1180px)/2));display:flex;justify-content:space-between;align-items:center;gap:1rem}header h1{font-size:1.2rem;margin:0}#connection{font-size:.9rem}main{max-width:1180px;margin:1.5rem auto;padding:0 1.25rem}.notice{border-left:4px solid #d6a53e;background:#fff8e8;padding:.9rem 1rem;margin-bottom:1.25rem;color:#514322}.grid{display:grid;grid-template-columns:minmax(280px,.82fr) minmax(0,1.5fr);gap:1rem}.stack{display:grid;gap:1rem;align-content:start}.card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:1.15rem;box-shadow:0 4px 16px #173c2910}.card h2{font-size:1.05rem;margin:0 0 .8rem}.card h3{font-size:.95rem;margin:1rem 0 .4rem}label{display:block;font-weight:600;margin:.65rem 0 .25rem}input,textarea,select,button{font:inherit}input:not([type=file]):not([type=checkbox]),textarea,select{width:100%;padding:.65rem .7rem;border:1px solid #bfcfc5;border-radius:8px;background:#fff;color:var(--ink)}input[type=file]{width:100%;padding:.5rem;border:1px dashed #a9bdb1;border-radius:8px;background:#fbfdfb}textarea{min-height:90px;resize:vertical}button,.button{border:0;border-radius:8px;padding:.62rem .9rem;background:var(--green);color:white;font-weight:650;cursor:pointer;margin-top:.7rem}button.secondary{background:#e8efeb;color:#234338}button.danger{background:#fff0ed;color:#9d392a}button:disabled{cursor:not-allowed;opacity:.5}:focus-visible{outline:3px solid #e6ab37;outline-offset:2px}.hint,.muted{color:var(--muted);font-size:.9rem}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:.7rem}.tasks{display:grid;gap:.55rem}.task{border:1px solid var(--line);border-radius:9px;padding:.7rem;display:flex;justify-content:space-between;gap:.5rem;align-items:start}.task.selected{border-color:var(--green);background:var(--pale)}.task button{margin:0}.task-title{font-weight:650}.badge{font-size:.78rem;background:#edf1ee;border-radius:99px;padding:.15rem .55rem;white-space:nowrap}.badge.failed{background:#ffebe8;color:var(--red)}.badge.completed{background:#e3f4e9;color:#23683f}.badge.waiting_for_harness,.badge.queued,.badge.claimed,.badge.running{background:#fff4d9;color:var(--amber)}.badge.review{background:#fff4d9;color:var(--review)}.badge.approved{background:#dff3e7;color:#1c5f3d}.badge.status-ready{background:#e3f4e9;color:#23683f}.badge.status-failed{background:#ffebe8;color:var(--red)}.badge.status-pending{background:#fff4d9;color:var(--amber)}.badge.source-kind{background:#eef2fb;color:#334c7a}.detail{min-height:180px}.content{white-space:pre-wrap;overflow-wrap:anywhere}.links a{color:#126248}.preview{width:100%;max-height:520px;object-fit:contain;border:1px solid var(--line);border-radius:8px;background:#f5f5f5}.pdf{width:100%;height:600px;border:1px solid var(--line);border-radius:8px}.actions{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}.hidden{display:none!important}ul{padding-left:1.3rem}a{overflow-wrap:anywhere}.intake-card{border-top:5px solid var(--green);margin-bottom:1.1rem}.intake-card h2{font-size:1.35rem}.intake-lead{margin:0 0 .9rem;max-width:76ch}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 1.2rem}.file-summary{font-size:.88rem;color:var(--muted);margin:.3rem 0 0;overflow-wrap:anywhere}.form-error{border-left:4px solid #c14b33;background:#fff1ee;color:#7c2d1e;padding:.7rem .8rem;margin-top:.8rem;white-space:pre-wrap;border-radius:6px}.intake-overview{border-top:1px solid var(--line);margin-top:1.1rem;padding-top:.9rem}.intake-overview-head{display:flex;align-items:center;justify-content:space-between;gap:.7rem;flex-wrap:wrap}.intake-overview-head h3{margin:0}.stage{border-left:4px solid var(--line);border-radius:6px;padding:.65rem .8rem;margin:.8rem 0;background:#f7faf8}.stage.review{border-color:#c88f1c;background:#fff8e8}.stage.approved{border-color:var(--green);background:#e9f6ef}.stage.failed{border-color:#c14b33;background:#fff1ee}.stage.waiting{border-color:#c88f1c;background:#fff8e8}.stage strong{display:block;margin-bottom:.15rem}.stage p{margin:0;font-size:.92rem}.sources{margin-top:.6rem}.source{border:1px solid var(--line);border-radius:8px;padding:.6rem .7rem;margin-bottom:.5rem;background:#fdfefd}.source.failed{border-color:#e8bdb4}.source.pending{border-color:#ead9ad}.source-head{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}.source-head strong{overflow-wrap:anywhere}.source-url{display:block;font-size:.86rem;color:#126248;margin-top:.2rem}.source-error{color:var(--red);font-size:.9rem;margin:.4rem 0 0;white-space:pre-wrap}.source-text{margin:.45rem 0 0}.source-text summary{cursor:pointer;font-size:.86rem;color:var(--muted)}.source-text pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto;background:#f4f7f4;border:1px solid var(--line);border-radius:6px;padding:.55rem;font-size:.84rem;margin:.35rem 0 0}.review{border-top:1px solid var(--line);margin-top:1rem;padding-top:.6rem}.review-json{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.85rem;min-height:260px;white-space:pre}.review-message{font-size:.9rem;margin:.5rem 0 0;white-space:pre-wrap}.review-message.failed{color:var(--red)}.review-message.ok{color:#1c5f3d}.checkline{display:flex;gap:.55rem;align-items:flex-start;font-weight:500;background:#fff8e8;border:1px solid #ead9ad;border-radius:8px;padding:.6rem .7rem;margin:.6rem 0}.checkline input{width:1.1rem;height:1.1rem;margin:.15rem 0 0}.approve-box{margin-top:.8rem;padding-top:.7rem;border-top:1px dashed var(--line)}.approve-box p{margin:.3rem 0}.exclusions{font-size:.9rem;color:var(--review)}.flash{border-radius:8px;padding:.6rem .75rem;margin-bottom:.8rem;background:#e9f6ef;color:#1c5f3d}.flash.failed{background:#fff1ee;color:var(--red)}.later{margin-top:1rem}.later summary{cursor:pointer;font-weight:650;padding:.3rem 0}.later .later-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.8rem}.later .card{box-shadow:none;background:#fbfdfb}.later.locked .later-grid{opacity:.65}.lock-note{font-size:.92rem;margin:.5rem 0 0;padding:.6rem .8rem;border-radius:8px;background:#fff8e8;color:#514322}@media(max-width:860px){.grid,.later .later-grid,.form-grid{grid-template-columns:1fr}.intake-card h2{font-size:1.2rem}}@media(max-width:760px){header{padding:1rem 1.25rem}main{margin:1rem auto}.pdf{height:440px}}
+</style>
+</head>
+<body>
+<header><h1>Find a Job <span class="muted" style="color:#c4d8cf">/ application workspace</span></h1><div id="connection" role="status" aria-live="polite">Connecting…</div></header>
+<main>
+<div class="notice" id="disclaimer">Output quality depends on the model you select, the source evidence and your configuration. Different models may produce different extraction, matching and resume-writing results. Review generated content for factual accuracy and suitability before use. The pipeline does not guarantee ATS acceptance, interviews or employment.</div>
+
+<section class="card intake-card" aria-labelledby="intakeHeading">
+  <h2 id="intakeHeading">1. Candidate intake</h2>
+  <p class="intake-lead">Build one candidate profile from every resume file, project catalog, GitHub repository and note you supply. Each source keeps its own identity, status and provenance.</p>
+  <form id="intakeForm" novalidate>
+    <div class="form-grid">
+      <div>
+        <label for="resumeFiles">Resume files <span class="muted">(one or more)</span></label>
+        <input id="resumeFiles" type="file" multiple aria-describedby="resumeSummary">
+        <p class="file-summary" id="resumeSummary" aria-live="polite">No resume files selected.</p>
+      </div>
+      <div>
+        <label for="catalogFiles">Project catalog files <span class="muted">(optional, multiple)</span></label>
+        <input id="catalogFiles" type="file" multiple aria-describedby="catalogSummary">
+        <p class="file-summary" id="catalogSummary" aria-live="polite">No catalog files selected.</p>
+      </div>
+    </div>
+    <label for="githubUrls">GitHub profile or repository URLs <span class="muted">(optional, one per line)</span></label>
+    <textarea id="githubUrls" rows="3" placeholder="https://github.com/owner&#10;https://github.com/owner/repository" spellcheck="false"></textarea>
+    <label for="intakeNotes">Notes or resume text <span class="muted">(optional supplemental facts; accepted as resume input when no file is provided)</span></label>
+    <textarea id="intakeNotes" rows="4" placeholder="Projects, responsibilities and verifiable facts not covered by the uploaded files."></textarea>
+    <label for="intakeTitle">Intake title <span class="muted">(optional)</span></label>
+    <input id="intakeTitle" type="text" maxlength="200" placeholder="Candidate intake">
+    <p class="hint">Accepted: PDF, DOCX, ODT, RTF, Markdown/TXT, CSV/TSV, JSON/YAML, HTML/XML, XLSX and PPTX. Scanned image-only PDFs need OCR and are reported as failed. Unsupported files remain visible as failed sources instead of being dropped.</p>
+    <div class="form-error hidden" id="intakeError" role="alert"></div>
+    <button id="intakeSubmit" type="submit">Build candidate profile</button>
+  </form>
+  <section class="intake-overview hidden" id="intakeOverview" aria-live="polite">
+    <div class="intake-overview-head">
+      <h3 id="intakeOverviewTitle">Current intake</h3>
+      <button id="openIntake" class="secondary" type="button">Review intake</button>
+    </div>
+    <div id="intakeOverviewBody"></div>
+  </section>
+</section>
+
+<div class="grid">
+  <aside class="stack">
+    <section class="card"><div class="toolbar"><h2>Task activity</h2><button id="refresh" class="secondary" type="button">Refresh</button></div><div id="tasks" class="tasks" aria-live="polite"><p class="muted">Loading tasks…</p></div></section>
+  </aside>
+  <div class="stack">
+    <section class="card detail"><h2 id="detailHeading" tabindex="-1">Task detail</h2><div id="detail" class="muted">Select a task to inspect its status, sources, evidence, and artifacts.</div></section>
+  </div>
+</div>
+
+<details class="card later locked" id="laterStage">
+  <summary>Later stage — browser research and resume generation <span class="muted" id="laterSummaryHint">Locked until an intake is approved</span></summary>
+  <p class="lock-note" id="laterLock">Locked: build and approve a candidate intake above. Browser research and resume controls stay disabled until then.</p>
+  <div class="later-grid">
+    <section class="card"><h2>Browser research</h2><form id="browserForm"><label for="url">Public page URL</label><input id="url" type="url" required placeholder="https://example.com/jobs"><label for="purpose">Purpose</label><select id="purpose"><option value="scrape">Scrape a page</option><option value="research">Job description research</option><option value="github">GitHub evidence</option></select><button id="browserButton" type="submit">Open and capture</button></form><p class="hint">A visible browser opens the page for review. Intake GitHub URLs already schedule their own browser captures.</p></section>
+    <section class="card"><h2>Generate resume</h2><label for="profileSelect">Approved intake or completed profile</label><select id="profileSelect"><option value="">Select a profile</option></select><label for="jobSelect">Completed job description</label><select id="jobSelect"><option value="">Select a browser research task</option></select><button id="resumeButton" type="button">Create tailored resume</button><p class="hint">Only completed profile tasks, with an approved intake where applicable, can be used. Nothing is submitted to an employer.</p></section>
+  </div>
+</details>
+</main>
+<script>
+(()=>{
+  'use strict';
+
+  let token = sessionStorage.getItem('findJobToken');
+  const fragment = new URLSearchParams(location.hash.slice(1));
+  if (fragment.get('token')) {
+    token = fragment.get('token');
+    sessionStorage.setItem('findJobToken', token);
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+
+  const $ = id => document.getElementById(id);
+  const SOURCE_KINDS = {resume: 'Resume', catalog: 'Catalog', notes: 'Notes', github: 'GitHub'};
+  const CLAIM_FIELDS = {skills: 'Skills', experience: 'Experience', projects: 'Projects', education: 'Education'};
+  const SERVICE_RESULT_FIELDS = ['review_status', 'reviewed_at', 'acknowledged_source_ids', 'acknowledged_sources', 'approved'];
+  let tasks = [];
+  let selected = '';
+  let polling = false;
+  let renderedTaskList = null;
+  let renderedDetail = null;
+  let renderedOverview = null;
+  let detailGeneration = 0;
+  let detailUrls = [];
+  let flash = null;
+  const reviewDrafts = new Map();
+
+  function esc(value) {
+    return String(value ?? '');
+  }
+
+  function node(tag, text, cls) {
+    const element = document.createElement(tag);
+    if (text !== undefined) element.textContent = esc(text);
+    if (cls) element.className = cls;
+    return element;
+  }
+
+  function describeError(body, status) {
+    const pieces = [];
+    if (typeof body?.detail === 'string') pieces.push(body.detail);
+    else if (Array.isArray(body?.detail)) pieces.push(...body.detail.map(item => item?.msg ? item.msg : JSON.stringify(item)));
+    else if (body?.detail && typeof body.detail === 'object') pieces.push(JSON.stringify(body.detail, null, 2));
+    if (Array.isArray(body?.errors)) pieces.push(...body.errors.map(item => typeof item === 'string' ? item : JSON.stringify(item)));
+    return pieces.filter(Boolean).join('\n') || 'Request failed (' + status + ')';
+  }
+
+  async function api(path, options = {}) {
+    if (!token) throw Error('Session token is missing. Reopen the dashboard using the URL provided by the local CLI.');
+    const headers = new Headers(options.headers || {});
+    headers.set('Authorization', 'Bearer ' + token);
+    if (options.body && !(options.body instanceof FormData)) headers.set('Content-Type', 'application/json');
+    const response = await fetch(path, {...options, headers});
+    let body = null;
+    try {
+      body = await response.json();
+    } catch {}
+    if (!response.ok) {
+      const error = Error(describeError(body, response.status));
+      error.payload = body;
+      error.status = response.status;
+      throw error;
+    }
+    return response.status === 204 ? null : body;
+  }
+
+  function setStatus(text, connected) {
+    $('connection').textContent = text;
+    $('connection').style.color = connected ? '#b9f0ce' : '#ffd5a0';
+  }
+
+  function isIntake(task) {
+    return Boolean(task) && task.kind === 'profile' && task.input?.intake === true;
+  }
+
+  function sourcesOf(task) {
+    return Array.isArray(task?.input?.sources) ? task.input.sources : [];
+  }
+
+  function sourceFailed(source) {
+    return String(source?.status || '').toLowerCase() === 'failed';
+  }
+
+  function sourcePending(source) {
+    const status = String(source?.status || '').toLowerCase();
+    return status !== 'ready' && status !== 'failed';
+  }
+
+  function reviewStatus(task) {
+    return isIntake(task) ? (task.result?.review_status || 'pending') : '';
+  }
+
+  function isApproved(task) {
+    return reviewStatus(task) === 'approved';
+  }
+
+  function hasApprovedIntake() {
+    return tasks.some(task => isIntake(task) && isApproved(task));
+  }
+
+  function sourceLabel(source) {
+    return source?.label || source?.url || SOURCE_KINDS[source?.kind] || 'Source';
+  }
+
+  function formatStatus(value) {
+    return String(value || 'unknown').replaceAll('_', ' ');
+  }
+
+  function taskSignature(task) {
+    if (!task) return '';
+    const sources = sourcesOf(task).map(source => [source.id, source.status, source.error ? 1 : 0].join(':')).join(',');
+    return [task.id, task.updated_at, task.status, task.result?.review_status || '', sources].join('|');
+  }
+
+  function taskArtifacts(task) {
+    return Array.isArray(task.result?.artifacts) ? task.result.artifacts : [];
+  }
+
+  function taskSourceCounts(task) {
+    const sources = sourcesOf(task);
+    const failed = sources.filter(sourceFailed).length;
+    const pending = sources.filter(sourcePending).length;
+    return {total: sources.length, failed, pending, ready: sources.length - failed - pending};
+  }
+
+  function reviewBadge(task) {
+    if (!isIntake(task)) return null;
+    if (isApproved(task)) {
+      const counts = taskSourceCounts(task);
+      return node('span', counts.failed ? 'approved, exclusions' : 'approved', 'badge approved');
+    }
+    if (task.status === 'completed') return node('span', 'needs review', 'badge review');
+    if (task.status === 'failed' || task.status === 'cancelled') return node('span', 'not approved', 'badge failed');
+    return node('span', 'not approved yet', 'badge review');
+  }
+
+  function taskListSignature() {
+    return tasks.map(taskSignature).join('||');
+  }
+
+  function restoreFocus(container, focusKey) {
+    if (!focusKey) return;
+    const controls = [...container.querySelectorAll('[data-focus-key]')];
+    const target = controls.find(element => element.dataset.focusKey === focusKey);
+    const fallbackKey = focusKey.startsWith('cancel:') ? 'task:' + focusKey.slice(7) : '';
+    const fallback = controls.find(element => element.dataset.focusKey === fallbackKey);
+    if (target || fallback) (target || fallback).focus();
+  }
+
+  function renderTasks(force = false) {
+    const signature = taskListSignature();
+    if (!force && signature === renderedTaskList) return;
+    renderedTaskList = signature;
+
+    const box = $('tasks');
+    const active = document.activeElement;
+    const focusKey = box.contains(active) ? active.dataset.focusKey : '';
+    box.replaceChildren();
+    if (!tasks.length) box.append(node('p', 'No tasks yet. Build a candidate intake to begin.', 'muted'));
+
+    for (const task of tasks) {
+      const row = node('div', undefined, 'task' + (task.id === selected ? ' selected' : ''));
+      row.dataset.focusKey = 'task:' + task.id;
+      const left = node('div');
+      const kind = isIntake(task) ? 'profile intake' : task.kind;
+      const statusText = isIntake(task) && task.status === 'completed' ? 'extraction completed' : formatStatus(task.status);
+      left.append(
+        node('div', task.title || task.kind, 'task-title'),
+        node('div', kind + ' · ' + statusText, 'muted')
+      );
+      row.append(left);
+
+      const right = node('div', undefined, 'actions');
+      right.append(node('span', formatStatus(task.status), 'badge ' + task.status));
+      const badge = reviewBadge(task);
+      if (badge) right.append(badge);
+      if (!['completed', 'failed', 'cancelled'].includes(task.status)) {
+        const cancel = node('button', 'Cancel', 'danger');
+        cancel.type = 'button';
+        cancel.dataset.focusKey = 'cancel:' + task.id;
+        cancel.setAttribute('aria-label', 'Cancel ' + (task.title || task.kind));
+        cancel.addEventListener('click', async event => {
+          event.stopPropagation();
+          try {
+            await api('/api/tasks/' + encodeURIComponent(task.id) + '/cancel', {method: 'POST'});
+            await refresh();
+          } catch (error) {
+            setStatus(error.message, false);
+          }
+        });
+        right.append(cancel);
+      }
+      row.append(right);
+      row.tabIndex = 0;
+      row.setAttribute('role', 'button');
+      row.setAttribute('aria-label', 'View ' + (task.title || task.kind) + ', ' + formatStatus(task.status));
+      row.addEventListener('click', () => selectTask(task));
+      row.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          row.click();
+        }
+      });
+      box.append(row);
+    }
+
+    restoreFocus(box, focusKey);
+    updateLaterStage();
+    const unlocked = hasApprovedIntake();
+    const profiles = tasks.filter(task => task.kind === 'profile' && task.status === 'completed' && (!isIntake(task) || isApproved(task)));
+    const jobs = tasks.filter(task => task.kind === 'browser' && task.status === 'completed' && task.input?.purpose === 'research');
+    fillSelect('profileSelect', profiles, 'Select a profile', task => {
+      const exclusions = isIntake(task) && taskSourceCounts(task).failed;
+      return (task.title || task.id) + (exclusions ? ' (approved with exclusions)' : '');
+    });
+    fillSelect('jobSelect', jobs, 'Select a browser research task');
+    if (!unlocked) {
+      $('profileSelect').value = '';
+      $('jobSelect').value = '';
+    }
+    updateResumeButton();
+  }
+
+  function fillSelect(id, list, placeholder, labeler) {
+    const select = $(id);
+    const previous = select.value;
+    select.replaceChildren();
+    const first = node('option', placeholder);
+    first.value = '';
+    select.append(first);
+    for (const task of list) {
+      const option = node('option', labeler ? labeler(task) : (task.title || task.id));
+      option.value = task.id;
+      select.append(option);
+    }
+    if (list.some(task => task.id === previous)) select.value = previous;
+  }
+
+  function updateResumeButton() {
+    $('resumeButton').disabled = !hasApprovedIntake() || !$('profileSelect').value || !$('jobSelect').value;
+  }
+
+  function updateLaterStage() {
+    const unlocked = hasApprovedIntake();
+    const stage = $('laterStage');
+    stage.classList.toggle('locked', !unlocked);
+    $('laterSummaryHint').textContent = unlocked ? 'Unlocked' : 'Locked until an intake is approved';
+    $('laterLock').textContent = unlocked
+      ? 'Intake approved. Browser research and resume generation are available.'
+      : 'Locked: build and approve a candidate intake above. Browser research and resume controls stay disabled until then.';
+    for (const id of ['url', 'purpose', 'browserButton', 'profileSelect', 'jobSelect']) $(id).disabled = !unlocked;
+  }
+
+  function releaseDetailUrls() {
+    for (const url of detailUrls) URL.revokeObjectURL(url);
+    detailUrls = [];
+  }
+
+  async function asset(task, name) {
+    const path = '/api/artifacts/' + encodeURIComponent(task.id) + '/' + encodeURIComponent(name);
+    const response = await fetch(path, {headers: {Authorization: 'Bearer ' + token}});
+    if (!response.ok) throw Error('Artifact unavailable (' + response.status + ')');
+    return URL.createObjectURL(await response.blob());
+  }
+
+  function appendTaskStatus(detail, task) {
+    detail.append(node('h3', task.title || task.kind));
+    const intake = isIntake(task);
+    const fields = ['Type: ' + (intake ? 'profile intake' : task.kind)];
+    fields.push(intake ? 'Model extraction: ' + formatStatus(task.status) : 'Status: ' + formatStatus(task.status));
+    if (intake) fields.push('Intake approval: ' + (isApproved(task) ? 'approved' : 'not approved'));
+    detail.append(node('p', fields.join(' · '), 'muted'));
+    if (task.error) detail.append(node('p', task.error, 'content'));
+    if (task.status === 'waiting_for_harness') {
+      detail.append(node(
+        'p',
+        'Waiting for your configured harness. Keep its selected-model claim loop servicing this queue; the service has no universal push API.',
+        'hint'
+      ));
+    }
+  }
+
+  function intakeStageInfo(task) {
+    const counts = taskSourceCounts(task);
+    if (task.status === 'failed') {
+      return {tone: 'failed', title: 'Intake failed', text: task.error || 'The intake could not be processed. Review the sources below.'};
+    }
+    if (task.status === 'cancelled') {
+      return {tone: 'failed', title: 'Intake cancelled', text: 'No profile was approved from this intake.'};
+    }
+    if (isApproved(task)) {
+      const reviewed = task.result?.reviewed_at ? 'Approved ' + new Date(task.result.reviewed_at).toLocaleString() + '. ' : '';
+      if (counts.failed) {
+        const failed = sourcesOf(task).filter(sourceFailed).map(sourceLabel).join(', ');
+        return {tone: 'approved', title: 'Intake approved with exclusions', text: reviewed + 'Failed sources excluded from evidence: ' + failed + '.'};
+      }
+      return {tone: 'approved', title: 'Intake approved', text: reviewed + 'All supplied sources were available and the profile is approved for later stages.'};
+    }
+    if (task.status === 'completed') {
+      if (counts.pending) {
+        return {tone: 'waiting', title: 'Profile extraction finished — approval locked', text: counts.pending + ' linked source(s) are still pending. Approval unlocks after every linked GitHub source settles.'};
+      }
+      return {tone: 'review', title: 'Profile needs review', text: 'Model extraction is complete, but the intake is not approved. Review the profile and source-linked evidence, correct the JSON if needed, then approve explicitly.'};
+    }
+    if (counts.pending) {
+      return {tone: 'waiting', title: 'Collecting sources and waiting for the model', text: counts.pending + ' linked source(s) are pending. The service does not finalize an intake while a GitHub source is still being captured.'};
+    }
+    if (task.status === 'waiting_for_harness') {
+      return {tone: 'waiting', title: 'Waiting for the model', text: 'Source extraction is done and the profile task is queued for your configured harness. Model extraction completion is separate from intake approval.'};
+    }
+    return {tone: 'waiting', title: 'Model extraction in progress', text: 'The configured harness is processing this intake. Approval becomes available only after extraction completes and every source settles.'};
+  }
+
+  function appendStage(container, task) {
+    const info = intakeStageInfo(task);
+    const stage = node('div', undefined, 'stage ' + info.tone);
+    stage.append(node('strong', info.title), node('p', info.text));
+    container.append(stage);
+  }
+
+  function sourceStatusClass(source) {
+    return String(source?.status || 'pending').toLowerCase().replace(/[^a-z_]/g, '');
+  }
+
+  function appendSources(container, task, compact = false) {
+    const sources = sourcesOf(task);
+    const section = node('div', undefined, 'sources');
+    const counts = taskSourceCounts(task);
+    section.append(node('h3', 'Sources (' + counts.total + ')'));
+    if (!sources.length) {
+      section.append(node('p', 'No sources recorded for this intake yet.', 'muted'));
+      container.append(section);
+      return section;
+    }
+    section.append(node('p', counts.ready + ' ready · ' + counts.failed + ' failed · ' + counts.pending + ' pending', 'muted'));
+    for (const source of sources) {
+      const statusClass = sourceStatusClass(source);
+      const row = node('div', undefined, 'source ' + statusClass);
+      const head = node('div', undefined, 'source-head');
+      head.append(node('strong', sourceLabel(source)));
+      head.append(node('span', SOURCE_KINDS[source.kind] || source.kind || 'Source', 'badge source-kind'));
+      if (source.format) head.append(node('span', String(source.format).toUpperCase(), 'badge'));
+      head.append(node('span', formatStatus(source.status), 'badge status-' + statusClass));
+      row.append(head);
+      if (source.id) row.append(node('p', 'Source id: ' + source.id, 'hint'));
+      if (source.url && /^https?:\/\//i.test(source.url)) {
+        const anchor = node('a', source.url, 'source-url');
+        anchor.href = source.url;
+        anchor.target = '_blank';
+        anchor.rel = 'noopener noreferrer';
+        row.append(anchor);
+      }
+      if (source.github_task_id) row.append(node('p', 'Linked browser task: ' + source.github_task_id, 'hint'));
+      if (source.error) row.append(node('p', source.error, 'source-error'));
+      if (!compact && source.text) {
+        const text = String(source.text);
+        const details = node('details', undefined, 'source-text');
+        details.append(node('summary', 'Extracted text (' + text.length + ' characters)'));
+        details.append(node('pre', text.slice(0, 1600)));
+        if (text.length > 1600) details.append(node('p', 'Preview truncated; the full text stays in the task record.', 'hint'));
+        row.append(details);
+      }
+      section.append(row);
+    }
+    container.append(section);
+    return section;
+  }
+
+  function appendClaims(detail, result) {
+    if (result.name) detail.append(node('h3', 'Profile: ' + result.name));
+    const contact = [];
+    if (result.email) contact.push('Email: ' + result.email);
+    if (result.phone) contact.push('Phone: ' + result.phone);
+    if (contact.length) detail.append(node('p', contact.join(' · '), 'muted'));
+    for (const [key, label] of Object.entries(CLAIM_FIELDS)) {
+      if (!Array.isArray(result[key]) || !result[key].length) continue;
+      detail.append(node('h3', label));
+      const list = node('ul');
+      result[key].forEach(value => list.append(node('li', value)));
+      detail.append(list);
+    }
+  }
+
+  function appendEvidence(detail, result, task) {
+    if (!Array.isArray(result.evidence) || !result.evidence.length) {
+      detail.append(node('h3', 'Evidence'));
+      detail.append(node('p', 'No evidence records were returned.', 'muted'));
+      return;
+    }
+    const labels = new Map(sourcesOf(task).map(source => [source.id, sourceLabel(source)]));
+    detail.append(node('h3', 'Evidence linked to sources'));
+    const list = node('ul');
+    for (const item of result.evidence) {
+      const entry = node('li');
+      entry.append(node('span', item.text || ''));
+      const label = labels.get(item.source) || ('Unknown source: ' + (item.source || 'missing id'));
+      entry.append(node('span', ' — Source: ' + label + (item.id ? ' (' + item.id + ')' : ''), 'muted'));
+      list.append(entry);
+    }
+    detail.append(list);
+  }
+
+  function appendProfile(detail, result) {
+    if (result.name) detail.append(node('h3', 'Profile: ' + result.name));
+    for (const key of ['skills', 'experience', 'projects', 'education']) {
+      if (!Array.isArray(result[key]) || !result[key].length) continue;
+      detail.append(node('h3', key[0].toUpperCase() + key.slice(1)));
+      const list = node('ul');
+      result[key].forEach(value => list.append(node('li', value)));
+      detail.append(list);
+    }
+    if (!Array.isArray(result.evidence)) return;
+    detail.append(node('h3', 'Evidence'));
+    const list = node('ul');
+    for (const item of result.evidence) list.append(node('li', (item.id ? item.id + ': ' : '') + item.text + ' — ' + item.source));
+    detail.append(list);
+  }
+
+  function appendPageText(detail, result) {
+    if (result.text) detail.append(node('h3', 'Captured page text'), node('div', result.text, 'content'));
+    if (!Array.isArray(result.links) || !result.links.length) return;
+    detail.append(node('h3', 'Page links'));
+    const list = node('ul');
+    for (const link of result.links.slice(0, 200)) {
+      const item = node('li');
+      const anchor = node('a', link.text || link.url);
+      anchor.href = link.url;
+      anchor.target = '_blank';
+      anchor.rel = 'noopener noreferrer';
+      item.append(anchor);
+      list.append(item);
+    }
+    detail.append(list);
+  }
+
+  function appendResume(detail, result) {
+    if (!Array.isArray(result.sections)) return;
+    for (const section of result.sections) {
+      detail.append(node('h3', section.heading));
+      const list = node('ul');
+      (section.items || []).forEach(item => {
+        list.append(node('li', item.text + ' [Evidence: ' + (item.evidence_ids || []).join(', ') + ']'));
+      });
+      detail.append(list);
+    }
+  }
+
+  function editableResult(result) {
+    const copy = JSON.parse(JSON.stringify(result || {}));
+    for (const key of SERVICE_RESULT_FIELDS) delete copy[key];
+    return copy;
+  }
+
+  function appendReview(detail, task) {
+    const sources = sourcesOf(task);
+    const counts = taskSourceCounts(task);
+    const failed = sources.filter(sourceFailed);
+    const review = node('div', undefined, 'review');
+    review.append(node('h3', 'Review and approve'));
+    if (isApproved(task)) {
+      review.append(node('p', 'Approved. Reopen this review by saving a correction; doing so invalidates approval until you approve again.', 'muted'));
+      review.append(node('p', 'Approved at: ' + (task.result?.reviewed_at ? new Date(task.result.reviewed_at).toLocaleString() : 'recorded by the service'), 'muted'));
+      if (counts.failed) review.append(node('p', 'This approval excludes: ' + failed.map(sourceLabel).join(', '), 'exclusions'));
+    }
+    if (task.status !== 'completed' || counts.pending) {
+      review.append(node('p', task.status !== 'completed'
+        ? 'Review and approval unlock after model extraction completes.'
+        : 'Approval is locked while linked sources are still pending.', 'muted'));
+      detail.append(review);
+      return;
+    }
+
+    review.append(node('p', 'The profile JSON below is editable. Saving corrections validates evidence provenance and resets approval to pending.', 'hint'));
+    const draft = reviewDrafts.get(task.id);
+    const editor = node('textarea', undefined, 'review-json');
+    editor.id = 'reviewJson';
+    editor.rows = 18;
+    editor.spellcheck = false;
+    editor.dataset.focusKey = 'review-json';
+    editor.setAttribute('aria-label', 'Editable profile JSON for review');
+    editor.value = draft ? draft.text : JSON.stringify(editableResult(task.result), null, 2);
+
+    const message = node('div', undefined, 'review-message');
+    message.setAttribute('role', 'status');
+    const actions = node('div', undefined, 'actions');
+    const save = node('button', 'Save corrections', 'secondary');
+    save.type = 'button';
+    save.dataset.focusKey = 'save-review';
+    const reset = node('button', 'Reset to extracted profile', 'secondary');
+    reset.type = 'button';
+    reset.dataset.focusKey = 'reset-review';
+    actions.append(save, reset);
+    review.append(editor, actions, message);
+
+    let ack = null;
+    if (failed.length) {
+      const label = node('label', undefined, 'checkline');
+      ack = document.createElement('input');
+      ack.type = 'checkbox';
+      ack.id = 'ackSourceErrors';
+      ack.dataset.focusKey = 'ack-source-errors';
+      const text = node('span', 'I acknowledge that ' + failed.length + ' failed source(s) will be excluded from this intake: ' + failed.map(sourceLabel).join(', '));
+      label.append(ack, text);
+      review.append(label);
+    }
+
+    const approveBox = node('div', undefined, 'approve-box');
+    const approve = node('button', 'Approve intake');
+    approve.type = 'button';
+    approve.id = 'approveIntake';
+    approve.dataset.focusKey = 'approve-intake';
+    const approveHint = node('p', '', 'hint');
+    approveBox.append(approveHint, approve);
+    review.append(approveBox);
+
+    function currentDraftDirty() {
+      return Boolean(reviewDrafts.get(task.id)?.dirty);
+    }
+
+    function updateApprove() {
+      const ackMissing = Boolean(ack) && !ack.checked;
+      const dirty = currentDraftDirty();
+      approve.disabled = ackMissing || dirty;
+      approveHint.textContent = dirty
+        ? 'Save or reset your corrections before approving.'
+        : (ackMissing ? 'Check the acknowledgement above to enable approval.' : 'Approval is explicit and separate from model extraction completion.');
+    }
+
+    editor.addEventListener('input', () => {
+      reviewDrafts.set(task.id, {text: editor.value, dirty: true});
+      message.textContent = 'Unsaved corrections.';
+      message.className = 'review-message';
+      updateApprove();
+    });
+
+    reset.addEventListener('click', () => {
+      reviewDrafts.delete(task.id);
+      editor.value = JSON.stringify(editableResult(task.result), null, 2);
+      message.textContent = 'Reset to the extracted profile. Not saved.';
+      message.className = 'review-message';
+      updateApprove();
+      editor.focus();
+    });
+
+    save.addEventListener('click', async () => {
+      let result;
+      try {
+        result = JSON.parse(editor.value);
+      } catch (error) {
+        message.textContent = 'Invalid JSON: ' + error.message;
+        message.className = 'review-message failed';
+        return;
+      }
+      if (!result || typeof result !== 'object' || Array.isArray(result)) {
+        message.textContent = 'The profile JSON must be an object.';
+        message.className = 'review-message failed';
+        return;
+      }
+      save.disabled = true;
+      try {
+        await api('/api/intakes/' + encodeURIComponent(task.id) + '/review', {
+          method: 'POST',
+          body: JSON.stringify({result})
+        });
+        reviewDrafts.delete(task.id);
+        flash = {taskId: task.id, message: 'Corrections saved. The intake is pending review and not approved.', tone: 'ok'};
+        renderedDetail = null;
+        await refresh();
+      } catch (error) {
+        message.textContent = error.message;
+        message.className = 'review-message failed';
+        save.disabled = false;
+      }
+    });
+
+    if (ack) ack.addEventListener('change', updateApprove);
+    approve.addEventListener('click', async () => {
+      approve.disabled = true;
+      try {
+        await api('/api/intakes/' + encodeURIComponent(task.id) + '/approve', {
+          method: 'POST',
+          body: JSON.stringify({acknowledge_source_errors: Boolean(ack?.checked)})
+        });
+        reviewDrafts.delete(task.id);
+        flash = {taskId: task.id, message: counts.failed ? 'Intake approved with acknowledged exclusions.' : 'Intake fully imported and approved.', tone: 'ok'};
+        renderedDetail = null;
+        await refresh();
+      } catch (error) {
+        message.textContent = error.message;
+        message.className = 'review-message failed';
+        updateApprove();
+      }
+    });
+
+    updateApprove();
+    detail.append(review);
+  }
+
+  function appendFlash(detail, task) {
+    if (!flash || flash.taskId !== task.id) return;
+    detail.append(node('div', flash.message, 'flash ' + flash.tone));
+  }
+
+  async function appendArtifact(detail, task, artifact, generation) {
+    if (!['image/png', 'application/pdf'].includes(artifact.media_type)) return;
+    let url;
+    try {
+      url = await asset(task, artifact.name);
+      if (generation !== detailGeneration) {
+        URL.revokeObjectURL(url);
+        return;
+      }
+      detailUrls.push(url);
+      if (artifact.media_type === 'image/png') {
+        detail.append(node('h3', 'Browser screenshot'));
+        const image = node('img');
+        image.src = url;
+        image.alt = 'Screenshot of the captured browser page';
+        image.className = 'preview';
+        detail.append(image);
+        return;
+      }
+      detail.append(node('h3', 'Resume PDF preview'));
+      const frame = node('iframe');
+      frame.src = url;
+      frame.title = 'Generated resume PDF preview';
+      frame.className = 'pdf';
+      detail.append(frame);
+      const download = node('a', 'Download PDF', 'button');
+      download.href = url;
+      download.download = artifact.name;
+      detail.append(download);
+    } catch (error) {
+      if (generation === detailGeneration) detail.append(node('p', error.message, 'muted'));
+    }
+  }
+
+  async function showDetail(task) {
+    const generation = ++detailGeneration;
+    releaseDetailUrls();
+    const detail = $('detail');
+    const active = document.activeElement;
+    const focusKey = detail.contains(active) ? active.dataset.focusKey : '';
+    detail.replaceChildren();
+    if (!task) {
+      detail.textContent = 'Select a task to inspect its status, sources, evidence, and artifacts.';
+      detail.className = 'muted';
+      return;
+    }
+    detail.className = '';
+    appendFlash(detail, task);
+    appendTaskStatus(detail, task);
+    if (isIntake(task)) {
+      appendStage(detail, task);
+      appendSources(detail, task);
+      if (task.result) {
+        appendClaims(detail, task.result);
+        appendEvidence(detail, task.result, task);
+        appendReview(detail, task);
+      }
+      restoreFocus(detail, focusKey);
+      return;
+    }
+    if (!task.result) {
+      restoreFocus(detail, focusKey);
+      return;
+    }
+    const result = task.result;
+    appendPageText(detail, result);
+    appendProfile(detail, result);
+    appendResume(detail, result);
+    restoreFocus(detail, focusKey);
+    for (const artifact of taskArtifacts(task)) {
+      await appendArtifact(detail, task, artifact, generation);
+    }
+  }
+
+  async function showSelectedDetail() {
+    const task = tasks.find(item => item.id === selected);
+    const signature = taskSignature(task) || 'empty:' + selected;
+    if (signature === renderedDetail) return;
+    renderedDetail = signature;
+    if (reviewDrafts.get(selected)?.dirty) return;
+    await showDetail(task);
+  }
+
+  function renderIntakeOverview() {
+    const selectedTask = tasks.find(item => item.id === selected);
+    const intake = isIntake(selectedTask) ? selectedTask : tasks.find(isIntake);
+    const box = $('intakeOverview');
+    if (!intake) {
+      box.classList.add('hidden');
+      renderedOverview = null;
+      return;
+    }
+    const signature = taskSignature(intake) + '|selected:' + selected;
+    if (signature === renderedOverview) return;
+    renderedOverview = signature;
+    box.classList.remove('hidden');
+    $('intakeOverviewTitle').textContent = intake.title || 'Current intake';
+    $('openIntake').textContent = isApproved(intake) ? 'View approved intake' : 'Review intake';
+    const body = $('intakeOverviewBody');
+    body.replaceChildren();
+    appendStage(body, intake);
+    appendSources(body, intake, true);
+  }
+
+  function selectTask(task) {
+    if (selected !== task.id) flash = null;
+    selected = task.id;
+    renderTasks(true);
+    renderIntakeOverview();
+    void showSelectedDetail();
+  }
+
+  async function refresh() {
+    if (polling) return;
+    polling = true;
+    try {
+      const state = await api('/api/state');
+      tasks = state.tasks || [];
+      const harness = state.harness || {};
+      const lastSeen = harness.last_seen ? new Date(harness.last_seen).toLocaleTimeString() : 'never';
+      setStatus(
+        harness.connected ? 'Harness connected · dashboard online' : 'Harness disconnected · dashboard online (last seen ' + lastSeen + ')',
+        Boolean(harness.connected)
+      );
+      if (state.disclaimer) $('disclaimer').textContent = state.disclaimer;
+      renderTasks();
+      renderIntakeOverview();
+      await showSelectedDetail();
+    } catch (error) {
+      setStatus(error.message, false);
+    } finally {
+      polling = false;
+    }
+  }
+
+  function updateFileSummary(inputId, outputId, emptyText) {
+    const files = [...$(inputId).files];
+    if (!files.length) {
+      $(outputId).textContent = emptyText;
+      return;
+    }
+    $(outputId).textContent = files.length + ' file' + (files.length === 1 ? '' : 's') + ' selected: ' + files.map(file => file.name).join(', ');
+  }
+
+  function showIntakeError(message) {
+    const box = $('intakeError');
+    box.textContent = message;
+    box.classList.toggle('hidden', !message);
+  }
+
+  function githubUrlsFrom(text) {
+    return text.split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+  }
+
+  function validGithubUrl(value) {
+    try {
+      const parsed = new URL(value);
+      if (!['http:', 'https:'].includes(parsed.protocol) || parsed.username || parsed.password) return false;
+      if (!['github.com', 'www.github.com'].includes(parsed.hostname.toLowerCase())) return false;
+      const segments = parsed.pathname.split('/').filter(Boolean);
+      return segments.length >= 1 && segments.length <= 2 && /^[A-Za-z0-9-]+$/.test(segments[0]) && (!segments[1] || /^[A-Za-z0-9._-]+$/.test(segments[1]));
+    } catch {
+      return false;
+    }
+  }
+
+  function clearIntakeForm() {
+    for (const id of ['resumeFiles', 'catalogFiles', 'githubUrls', 'intakeNotes', 'intakeTitle']) $(id).value = '';
+    updateFileSummary('resumeFiles', 'resumeSummary', 'No resume files selected.');
+    updateFileSummary('catalogFiles', 'catalogSummary', 'No catalog files selected.');
+  }
+
+  $('resumeFiles').addEventListener('change', () => updateFileSummary('resumeFiles', 'resumeSummary', 'No resume files selected.'));
+  $('catalogFiles').addEventListener('change', () => updateFileSummary('catalogFiles', 'catalogSummary', 'No catalog files selected.'));
+
+  $('intakeForm').addEventListener('submit', async event => {
+    event.preventDefault();
+    showIntakeError('');
+    const resumeFiles = [...$('resumeFiles').files];
+    const catalogFiles = [...$('catalogFiles').files];
+    const notes = $('intakeNotes').value.trim();
+    const githubLines = githubUrlsFrom($('githubUrls').value);
+    const title = $('intakeTitle').value.trim();
+    if (!resumeFiles.length && !notes) {
+      showIntakeError('Provide at least one resume file or readable resume text in Notes.');
+      $('resumeFiles').focus();
+      return;
+    }
+    const invalid = githubLines.filter(line => !validGithubUrl(line));
+    if (invalid.length) {
+      showIntakeError('Use public github.com/<owner> or github.com/<owner>/<repo> URLs, one per line. Invalid: ' + invalid.join(', '));
+      $('githubUrls').focus();
+      return;
+    }
+    const body = new FormData();
+    for (const file of resumeFiles) body.append('resume_files', file, file.name);
+    for (const file of catalogFiles) body.append('catalog_files', file, file.name);
+    if (githubLines.length) body.append('github_urls', JSON.stringify(githubLines));
+    if (notes) body.append('notes', notes);
+    if (title) body.append('title', title);
+    const button = $('intakeSubmit');
+    const label = button.textContent;
+    button.disabled = true;
+    button.textContent = 'Building candidate profile…';
+    try {
+      const created = await api('/api/intakes', {method: 'POST', body});
+      const task = created?.task?.id ? created.task : created;
+      selected = task.id;
+      flash = {taskId: task.id, message: 'Intake created. Model extraction and source collection are now visible below.', tone: 'ok'};
+      clearIntakeForm();
+      renderedTaskList = null;
+      renderedDetail = null;
+      renderedOverview = null;
+      await refresh();
+    } catch (error) {
+      showIntakeError(error.message);
+      setStatus('Intake could not be created. Review the listed source errors.', false);
+    } finally {
+      button.disabled = false;
+      button.textContent = label;
+    }
+  });
+
+  $('openIntake').addEventListener('click', () => {
+    const selectedTask = tasks.find(item => item.id === selected);
+    const intake = isIntake(selectedTask) ? selectedTask : tasks.find(isIntake);
+    if (!intake) return;
+    selectTask(intake);
+    $('detailHeading').focus();
+    $('detail').scrollIntoView({block: 'start'});
+  });
+
+  $('browserForm').addEventListener('submit', async event => {
+    event.preventDefault();
+    if (!hasApprovedIntake()) {
+      setStatus('Approve a candidate intake before starting browser research.', false);
+      return;
+    }
+    try {
+      const url = $('url').value;
+      const task = await api('/api/tasks', {
+        method: 'POST',
+        body: JSON.stringify({kind: 'browser', title: url, input: {url, purpose: $('purpose').value}})
+      });
+      selected = task.id;
+      await refresh();
+    } catch (error) {
+      setStatus(error.message, false);
+    }
+  });
+
+  $('resumeButton').addEventListener('click', async () => {
+    if (!hasApprovedIntake()) {
+      setStatus('Approve a candidate intake before generating a resume.', false);
+      return;
+    }
+    const profile_task_id = $('profileSelect').value;
+    const job_task_id = $('jobSelect').value;
+    if (!profile_task_id || !job_task_id) return;
+    try {
+      const task = await api('/api/tasks', {
+        method: 'POST',
+        body: JSON.stringify({kind: 'resume', title: 'Tailored resume', input: {profile_task_id, job_task_id}})
+      });
+      selected = task.id;
+      await refresh();
+    } catch (error) {
+      setStatus(error.message, false);
+    }
+  });
+
+  $('profileSelect').addEventListener('change', updateResumeButton);
+  $('jobSelect').addEventListener('change', updateResumeButton);
+  $('refresh').addEventListener('click', refresh);
+  window.addEventListener('pagehide', releaseDetailUrls);
+  void refresh();
+  setInterval(refresh, 1000);
+})();
+</script>
+</body></html>

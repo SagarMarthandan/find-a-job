@@ -25,6 +25,11 @@ test-results/
 !.env.example
 !.env.*.example
 *.pem
+
+# Preserve legacy personal code/data locally; never publish without review.
+/Jobscraper/
+/llm-cv/
+
 *.key
 /Jobscraper/config.json
 
