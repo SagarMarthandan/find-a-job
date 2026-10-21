@@ -6,6 +6,9 @@
 <style>
 :root{font:16px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#17211e;background:#f3f6f3;--ink:#17211e;--muted:#65726c;--line:#dce5df;--green:#16745b;--pale:#e8f3ed;--white:#fff;--amber:#8b5a0a;--red:#9d392a;--review:#7a5410}*{box-sizing:border-box}body{margin:0}header{background:#103d32;color:white;padding:1.1rem max(1.25rem,calc((100vw - 1180px)/2));display:flex;justify-content:space-between;align-items:center;gap:1rem}header h1{font-size:1.2rem;margin:0}#connection{font-size:.9rem}main{max-width:1180px;margin:1.5rem auto;padding:0 1.25rem}.notice{border-left:4px solid #d6a53e;background:#fff8e8;padding:.9rem 1rem;margin-bottom:1.25rem;color:#514322}.grid{display:grid;grid-template-columns:minmax(280px,.82fr) minmax(0,1.5fr);gap:1rem}.stack{display:grid;gap:1rem;align-content:start}.card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:1.15rem;box-shadow:0 4px 16px #173c2910}.card h2{font-size:1.05rem;margin:0 0 .8rem}.card h3{font-size:.95rem;margin:1rem 0 .4rem}label{display:block;font-weight:600;margin:.65rem 0 .25rem}input,textarea,select,button{font:inherit}input:not([type=file]):not([type=checkbox]),textarea,select{width:100%;padding:.65rem .7rem;border:1px solid #bfcfc5;border-radius:8px;background:#fff;color:var(--ink)}input[type=file]{width:100%;padding:.5rem;border:1px dashed #a9bdb1;border-radius:8px;background:#fbfdfb}textarea{min-height:90px;resize:vertical}button,.button{border:0;border-radius:8px;padding:.62rem .9rem;background:var(--green);color:white;font-weight:650;cursor:pointer;margin-top:.7rem}button.secondary{background:#e8efeb;color:#234338}button.danger{background:#fff0ed;color:#9d392a}button:disabled{cursor:not-allowed;opacity:.5}:focus-visible{outline:3px solid #e6ab37;outline-offset:2px}.hint,.muted{color:var(--muted);font-size:.9rem}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:.7rem}.tasks{display:grid;gap:.55rem}.task{border:1px solid var(--line);border-radius:9px;padding:.7rem;display:flex;justify-content:space-between;gap:.5rem;align-items:start}.task.selected{border-color:var(--green);background:var(--pale)}.task button{margin:0}.task-title{font-weight:650}.badge{font-size:.78rem;background:#edf1ee;border-radius:99px;padding:.15rem .55rem;white-space:nowrap}.badge.failed{background:#ffebe8;color:var(--red)}.badge.completed{background:#e3f4e9;color:#23683f}.badge.waiting_for_harness,.badge.queued,.badge.claimed,.badge.running{background:#fff4d9;color:var(--amber)}.badge.review{background:#fff4d9;color:var(--review)}.badge.approved{background:#dff3e7;color:#1c5f3d}.badge.status-ready{background:#e3f4e9;color:#23683f}.badge.status-failed{background:#ffebe8;color:var(--red)}.badge.status-pending{background:#fff4d9;color:var(--amber)}.badge.source-kind{background:#eef2fb;color:#334c7a}.detail{min-height:180px}.content{white-space:pre-wrap;overflow-wrap:anywhere}.links a{color:#126248}.preview{width:100%;max-height:520px;object-fit:contain;border:1px solid var(--line);border-radius:8px;background:#f5f5f5}.pdf{width:100%;height:600px;border:1px solid var(--line);border-radius:8px}.actions{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}.hidden{display:none!important}ul{padding-left:1.3rem}a{overflow-wrap:anywhere}.intake-card{border-top:5px solid var(--green);margin-bottom:1.1rem}.intake-card h2{font-size:1.35rem}.intake-lead{margin:0 0 .9rem;max-width:76ch}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 1.2rem}.file-summary{font-size:.88rem;color:var(--muted);margin:.3rem 0 0;overflow-wrap:anywhere}.form-error{border-left:4px solid #c14b33;background:#fff1ee;color:#7c2d1e;padding:.7rem .8rem;margin-top:.8rem;white-space:pre-wrap;border-radius:6px}.intake-overview{border-top:1px solid var(--line);margin-top:1.1rem;padding-top:.9rem}.intake-overview-head{display:flex;align-items:center;justify-content:space-between;gap:.7rem;flex-wrap:wrap}.intake-overview-head h3{margin:0}.stage{border-left:4px solid var(--line);border-radius:6px;padding:.65rem .8rem;margin:.8rem 0;background:#f7faf8}.stage.review{border-color:#c88f1c;background:#fff8e8}.stage.approved{border-color:var(--green);background:#e9f6ef}.stage.failed{border-color:#c14b33;background:#fff1ee}.stage.waiting{border-color:#c88f1c;background:#fff8e8}.stage strong{display:block;margin-bottom:.15rem}.stage p{margin:0;font-size:.92rem}.sources{margin-top:.6rem}.source{border:1px solid var(--line);border-radius:8px;padding:.6rem .7rem;margin-bottom:.5rem;background:#fdfefd}.source.failed{border-color:#e8bdb4}.source.pending{border-color:#ead9ad}.source-head{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}.source-head strong{overflow-wrap:anywhere}.source-url{display:block;font-size:.86rem;color:#126248;margin-top:.2rem}.source-error{color:var(--red);font-size:.9rem;margin:.4rem 0 0;white-space:pre-wrap}.source-text{margin:.45rem 0 0}.source-text summary{cursor:pointer;font-size:.86rem;color:var(--muted)}.source-text pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto;background:#f4f7f4;border:1px solid var(--line);border-radius:6px;padding:.55rem;font-size:.84rem;margin:.35rem 0 0}.review{border-top:1px solid var(--line);margin-top:1rem;padding-top:.6rem}.review-json{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.85rem;min-height:260px;white-space:pre}.review-message{font-size:.9rem;margin:.5rem 0 0;white-space:pre-wrap}.review-message.failed{color:var(--red)}.review-message.ok{color:#1c5f3d}.checkline{display:flex;gap:.55rem;align-items:flex-start;font-weight:500;background:#fff8e8;border:1px solid #ead9ad;border-radius:8px;padding:.6rem .7rem;margin:.6rem 0}.checkline input{width:1.1rem;height:1.1rem;margin:.15rem 0 0}.approve-box{margin-top:.8rem;padding-top:.7rem;border-top:1px dashed var(--line)}.approve-box p{margin:.3rem 0}.exclusions{font-size:.9rem;color:var(--review)}.flash{border-radius:8px;padding:.6rem .75rem;margin-bottom:.8rem;background:#e9f6ef;color:#1c5f3d}.flash.failed{background:#fff1ee;color:var(--red)}.later{margin-top:1rem}.later summary{cursor:pointer;font-weight:650;padding:.3rem 0}.later .later-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.8rem}.later .card{box-shadow:none;background:#fbfdfb}.later.locked .later-grid{opacity:.65}.lock-note{font-size:.92rem;margin:.5rem 0 0;padding:.6rem .8rem;border-radius:8px;background:#fff8e8;color:#514322}@media(max-width:860px){.grid,.later .later-grid,.form-grid{grid-template-columns:1fr}.intake-card h2{font-size:1.2rem}}@media(max-width:760px){header{padding:1rem 1.25rem}main{margin:1rem auto}.pdf{height:440px}}
 </style>
+<style>
+.search-stage{border-top:5px solid #438b72;margin:1rem 0 1.2rem}.search-stage h2{font-size:1.3rem}.search-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}.search-wide{grid-column:1/-1}.role-card,.job-card,.source-option,.source-result{border:1px solid var(--line);border-radius:9px;padding:.75rem;margin:.55rem 0;background:#fbfdfb}.role-card header,.job-card header,.source-result header{color:var(--ink);background:transparent;padding:0;display:flex;justify-content:space-between;align-items:flex-start;gap:.7rem}.role-card p,.job-card p,.source-result p{margin:.4rem 0}.role-card textarea{min-height:3.5rem}.evidence-list{font-size:.9rem}.filter-set{border:1px solid var(--line);border-radius:9px;padding:.6rem .8rem;margin:.7rem 0}.filter-set legend{font-weight:650;padding:0 .25rem}.check-options{display:flex;flex-wrap:wrap;gap:.2rem .9rem}.check-options label,.source-option label,.history-toggle{display:flex;gap:.4rem;align-items:center;font-weight:500;margin:.35rem 0}.check-options input,.source-option input,.history-toggle input{width:1.05rem;height:1.05rem}.source-option{margin:.4rem 0}.source-option p{margin:.2rem 0;font-size:.87rem}.role-terms{margin-top:.4rem}.stage-message{margin:.6rem 0;padding:.6rem .75rem;border-radius:7px;background:#f2f6f3;white-space:pre-wrap}.stage-message.error{background:#fff1ee;color:var(--red)}.stage-message.success{background:#e9f6ef;color:#1c5f3d}.stale{color:var(--red);font-weight:650}.job-evidence{font-size:.9rem}.job-meta{color:var(--muted)}.job-card details{margin:.45rem 0}.source-result.error{border-color:#e8bdb4}.status-toggle{display:flex;gap:.5rem;align-items:center}.status-toggle input{width:1.05rem;height:1.05rem}.search-actions{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}.search-stage button{margin-top:.45rem}@media(max-width:860px){.search-grid{grid-template-columns:1fr}.search-wide{grid-column:auto}}
+</style>
 </head>
 <body>
 <header><h1>Find a Job <span class="muted" style="color:#c4d8cf">/ application workspace</span></h1><div id="connection" role="status" aria-live="polite">Connecting…</div></header>
@@ -45,6 +48,52 @@
     </div>
     <div id="intakeOverviewBody"></div>
   </section>
+</section>
+
+<section class="card search-stage" id="searchStage" aria-labelledby="searchHeading">
+  <h2 id="searchHeading">2. Role discovery and job search</h2>
+  <p class="intake-lead">Choose an approved intake. Suggested roles use its approved profile and source-linked evidence. Search filters start unconstrained; saving never starts browsing.</p>
+  <label for="searchIntake">Approved candidate intake</label>
+  <select id="searchIntake"><option value="">Select an approved intake</option></select>
+  <div id="searchStatus" class="stage-message" role="status" aria-live="polite">Select an approved intake to load role suggestions and saved search settings.</div>
+  <div class="search-actions">
+    <button type="button" id="suggestRoles" disabled>Suggest roles from approved evidence</button>
+    <button type="button" class="secondary" id="refreshSearch" disabled>Reload saved search</button>
+  </div>
+  <section id="rolesPanel" class="hidden" aria-labelledby="rolesHeading">
+    <h3 id="rolesHeading">Role suggestions</h3>
+    <p class="hint">Review the evidence and gaps before selecting roles. Search terms are editable aliases; deselected suggestions remain excluded from this search.</p>
+    <div id="rolesList"></div>
+    <div class="search-grid">
+      <div><label for="customRoleTitle">Add a custom role title</label><input id="customRoleTitle" maxlength="160" type="text"></div>
+      <div><label for="customRoleTerms">Search terms / aliases <span class="muted">(comma separated)</span></label><input id="customRoleTerms" type="text"></div>
+    </div>
+    <button type="button" class="secondary" id="addCustomRole">Add custom role</button>
+  </section>
+  <form id="searchForm" class="hidden" novalidate>
+    <h3>Search filters</h3>
+    <div class="search-grid">
+      <div><label for="maxExperience">Maximum required experience (years; blank = unconstrained)</label><input id="maxExperience" type="number" min="0" step="0.5"></div>
+      <div><label for="radiusKm">City radius (km; requires at least one city)</label><input id="radiusKm" type="number" min="1" step="1"></div>
+      <div class="search-wide"><fieldset class="filter-set"><legend>Seniority</legend><div id="seniorityOptions" class="check-options"></div></fieldset></div>
+      <div><label for="countries">Countries <span class="muted">(comma separated; blank = any)</span></label><input id="countries" type="text"></div>
+      <div><label for="cities">Cities <span class="muted">(comma separated; blank = any)</span></label><input id="cities" type="text"></div>
+      <div class="search-wide"><fieldset class="filter-set"><legend>Work mode</legend><div id="workModeOptions" class="check-options"></div></fieldset></div>
+      <div><label for="remoteRegions">Eligible remote regions <span class="muted">(comma separated)</span></label><input id="remoteRegions" type="text"><p class="hint">Blank means no region constraint. Do not assume remote eligibility when the posting does not specify it.</p></div>
+      <div><label for="postedWithin">Posting age in days <span class="muted">(blank = unconstrained)</span></label><input id="postedWithin" type="number" min="1" step="1"></div>
+      <div><label for="postedAfter">Posted on or after <span class="muted">(optional)</span></label><input id="postedAfter" type="date"></div>
+      <div><label for="postedBefore">Posted on or before <span class="muted">(optional)</span></label><input id="postedBefore" type="date"></div>
+      <div class="search-wide"><fieldset class="filter-set"><legend>Employment type</legend><div id="employmentOptions" class="check-options"></div></fieldset></div>
+      <div class="search-wide"><fieldset class="filter-set"><legend>Required language proficiency</legend><p class="hint">Level is the maximum required proficiency you accept for that language; it is not a claim about your fluency. Unknown requirements follow the policy below.</p><div id="languageRows"></div><div class="search-grid"><div><label for="languageName">Language</label><input id="languageName" type="text" maxlength="80"></div><div><label for="languageLevel">Maximum acceptable required level</label><select id="languageLevel"><option value="any">Any / unspecified</option><option>A1</option><option>A2</option><option>B1</option><option>B2</option><option>C1</option><option>C2</option></select></div></div><button class="secondary" id="addLanguage" type="button">Add language filter</button></fieldset></div>
+      <div class="search-wide"><fieldset class="filter-set"><legend>Job sources <span class="muted">(select at least one)</span></legend><div id="sourceOptions"></div><div><label for="atsBoards">Explicit ATS board URLs <span class="muted">(one URL per line; only used with ATS selected)</span></label><textarea id="atsBoards" rows="3"></textarea></div></fieldset></div>
+      <div><label for="unknownPolicy">When eligibility requirements are unknown</label><select id="unknownPolicy"><option value="review">Keep for review</option><option value="exclude">Exclude</option></select></div>
+      <div><label for="maxResults">Maximum detail pages per source (1–50)</label><input id="maxResults" type="number" min="1" max="50" step="1" value="10"></div>
+      <div class="search-wide"><label class="history-toggle"><input id="excludeSeen" type="checkbox"> Exclude postings seen in earlier searches for this intake</label><label class="history-toggle"><input id="excludeApplied" type="checkbox"> Exclude postings marked applied for this intake</label><p class="hint">Application status is local metadata only. These settings do not submit applications or affect another intake.</p></div>
+    </div>
+    <div id="searchFormError" class="form-error hidden" role="alert"></div>
+    <div class="search-actions"><button type="button" id="saveSearch">Save search settings</button><button type="button" id="runSearch" disabled>Start search</button><button type="button" class="secondary hidden" id="discardSearchDraft">Discard unsaved edits and reload</button><span id="searchRevision" class="hint"></span></div>
+  </form>
+  <section id="searchResults" class="hidden" aria-labelledby="resultsHeading"><h3 id="resultsHeading">Search run</h3><div id="runProgress" aria-live="polite"></div><div id="runResults"></div></section>
 </section>
 
 <div class="grid">
@@ -91,6 +140,27 @@
   let detailUrls = [];
   let flash = null;
   const reviewDrafts = new Map();
+  const SEARCH_OPTIONS = {
+    seniority: ['internship', 'working_student', 'junior', 'mid', 'senior', 'lead'],
+    workModes: ['onsite', 'hybrid', 'remote'],
+    employment: ['permanent', 'contract', 'part_time', 'internship', 'working_student']
+  };
+  let searchSources = [];
+  let searchConfig = null;
+  let rolesTask = null;
+  let rolesStale = false;
+  let configStale = false;
+  let searchSnapshot = '';
+  let searchLoadedSignature = '';
+  let searchLoadGeneration = 0;
+  let stageArtifactUrls = [];
+  let customRoles = [];
+  let languageFilters = [];
+  let searchArtifactUrls = new Map();
+  let loadedSearchIntakeId = '';
+  let stageArtifactGeneration = 0;
+  let searchBusy = false;
+  let appliedUrls = new Set();
 
   function esc(value) {
     return String(value ?? '');
@@ -180,7 +250,8 @@
   }
 
   function taskArtifacts(task) {
-    return Array.isArray(task.result?.artifacts) ? task.result.artifacts : [];
+    if (Array.isArray(task.result?.artifacts)) return task.result.artifacts;
+    return Array.isArray(task.input?.acquisition?.artifacts) ? task.input.acquisition.artifacts : [];
   }
 
   function taskSourceCounts(task) {
@@ -780,12 +851,756 @@
     void showSelectedDetail();
   }
 
+  function optionChecks(id, values) {
+    const box = $(id);
+    box.replaceChildren();
+    for (const value of values) {
+      const label = node('label');
+      const input = document.createElement('input');
+      input.type = 'checkbox';
+      input.value = value;
+      label.append(input, node('span', value.replaceAll('_', ' ')));
+      box.append(label);
+    }
+  }
+
+  function selectedChecks(id) {
+    return [...$(id).querySelectorAll('input:checked')].map(input => input.value);
+  }
+
+  function setChecks(id, values) {
+    const selected = new Set(values || []);
+    for (const input of $(id).querySelectorAll('input')) input.checked = selected.has(input.value);
+  }
+
+  function commaList(value) {
+    return value.split(',').map(item => item.trim()).filter(Boolean);
+  }
+
+  function setMessage(text, tone = '') {
+    const box = $('searchStatus');
+    box.textContent = text;
+    box.className = 'stage-message' + (tone ? ' ' + tone : '');
+  }
+
+  function clearStageArtifacts() {
+    stageArtifactGeneration += 1;
+    for (const url of stageArtifactUrls) URL.revokeObjectURL(url);
+    stageArtifactUrls = [];
+    searchArtifactUrls.clear();
+  }
+
+
+  function safeHttpUrl(value) {
+    try {
+      const url = new URL(value);
+      return ['http:', 'https:'].includes(url.protocol) && !url.username && !url.password ? url.href : '';
+    } catch {
+      return '';
+    }
+  }
+
+  function selectedIntake() {
+    return tasks.find(task => task.id === $('searchIntake').value && isIntake(task) && isApproved(task));
+  }
+
+  function currentRoleReady() {
+    return Boolean(rolesTask && rolesTask.status === 'completed' && !rolesStale && selectedIntake());
+  }
+
+  function searchFormData() {
+    const roleCards = [...$('rolesList').querySelectorAll('[data-role-card]')];
+    const roles = [];
+    const excluded_titles = [];
+    for (const card of roleCards) {
+      const role = JSON.parse(card.dataset.role);
+      const title = card.querySelector('[data-role-title]').value.trim();
+      const search_terms = commaList(card.querySelector('[data-role-terms]').value);
+      if (card.querySelector('[data-role-selected]').checked) {
+        if (title) roles.push({id: role.id, title, search_terms, custom: Boolean(role.custom)});
+      } else if (title) excluded_titles.push(title);
+    }
+    return {
+      roles_task_id: rolesTask?.id || '',
+      roles,
+      excluded_titles,
+      max_required_experience_years: $('maxExperience').value === '' ? null : Number($('maxExperience').value),
+      seniority: selectedChecks('seniorityOptions'),
+      countries: commaList($('countries').value),
+      cities: commaList($('cities').value),
+      radius_km: $('radiusKm').value === '' ? null : Number($('radiusKm').value),
+      work_modes: selectedChecks('workModeOptions'),
+      remote_regions: commaList($('remoteRegions').value),
+      posted_within_days: $('postedWithin').value === '' ? null : Number($('postedWithin').value),
+      posted_after: $('postedAfter').value || null,
+      posted_before: $('postedBefore').value || null,
+      employment_types: selectedChecks('employmentOptions'),
+      languages: languageFilters.map(item => ({...item})),
+      sources: [...$('sourceOptions').querySelectorAll('input:checked')].map(input => input.value),
+      unknown_policy: $('unknownPolicy').value,
+      exclude_seen: $('excludeSeen').checked,
+      exclude_applied: $('excludeApplied').checked,
+      ats_board_urls: $('atsBoards').value.split(/\r?\n/).map(url => url.trim()).filter(Boolean),
+      max_results_per_source: Number($('maxResults').value)
+    };
+  }
+
+  function formSignature() {
+    return JSON.stringify(searchFormData());
+  }
+
+  function updateSearchButtons() {
+    const ready = currentRoleReady();
+    const dirty = searchSnapshot !== '' && formSignature() !== searchSnapshot;
+    $('saveSearch').disabled = !ready || searchBusy;
+    $('runSearch').disabled = !searchConfig || dirty || !ready || rolesStale || configStale || searchBusy;
+    $('discardSearchDraft').classList.toggle('hidden', !dirty);
+    $('searchRevision').textContent = searchConfig
+      ? 'Saved configuration revision ' + searchConfig.revision + (configStale ? ' · stale after profile change; save again' : '') + (dirty ? ' · unsaved changes' : '')
+      : 'No saved configuration' + (dirty ? ' · unsaved changes' : '');
+    if (dirty) $('searchRevision').classList.add('stale');
+    else $('searchRevision').classList.remove('stale');
+  }
+
+  function renderRoleCards() {
+    const box = $('rolesList');
+    box.replaceChildren();
+    const suggested = Array.isArray(rolesTask?.result?.roles) ? rolesTask.result.roles : [];
+    const configured = searchConfig?.roles || [];
+    const byId = new Map(configured.map(role => [role.id, role]));
+    const roles = [...suggested, ...customRoles.filter(role => !suggested.some(item => item.id === role.id))];
+    for (const saved of configured.filter(role => role.custom)) {
+      if (!roles.some(role => role.id === saved.id)) roles.push(saved);
+    }
+    customRoles = roles.filter(role => role.custom);
+    if (!roles.length) {
+      box.append(node('p', rolesTask?.status === 'failed' ? (rolesTask.error || 'Role suggestions failed.') : 'No current role suggestions. Add custom roles after a current role task completes.', 'muted'));
+      return;
+    }
+    for (const role of roles) {
+      const current = byId.get(role.id) || role;
+      const card = node('article', undefined, 'role-card');
+      card.dataset.roleCard = '';
+      card.dataset.role = JSON.stringify({id: role.id, custom: Boolean(role.custom)});
+      const header = node('header');
+      const label = node('label', undefined, 'checkline');
+      const selected = document.createElement('input');
+      selected.type = 'checkbox';
+      selected.dataset.roleSelected = '';
+      selected.checked = Boolean(byId.has(role.id));
+      selected.disabled = rolesStale || !rolesTask || rolesTask.status !== 'completed';
+      label.append(selected, node('span', 'Include in search'));
+      header.append(node('strong', role.title || 'Untitled role'), label);
+      card.append(header);
+      const title = document.createElement('input');
+      title.type = 'text';
+      title.maxLength = 160;
+      title.value = current.title || role.title || '';
+      title.setAttribute('aria-label', 'Search title for ' + (role.title || 'custom role'));
+      title.dataset.roleTitle = '';
+      title.disabled = rolesStale || rolesTask?.status !== 'completed';
+      const titleLabel = node('label', 'Editable search title');
+      title.id = 'role-title-' + String(role.id).replace(/[^A-Za-z0-9_-]/g, '-');
+      titleLabel.htmlFor = title.id;
+      card.append(titleLabel, title);
+      const terms = document.createElement('textarea');
+      terms.rows = 2;
+      terms.value = (current.search_terms || role.search_terms || []).join(', ');
+      terms.id = 'role-terms-' + String(role.id).replace(/[^A-Za-z0-9_-]/g, '-');
+      terms.setAttribute('aria-label', 'Search aliases for ' + (role.title || 'custom role'));
+      terms.dataset.roleTerms = '';
+      terms.disabled = rolesStale || rolesTask?.status !== 'completed';
+      const termsLabel = node('label', 'Search terms and aliases, comma separated');
+      termsLabel.htmlFor = terms.id;
+      card.append(termsLabel, terms);
+      if (!role.custom) {
+        card.append(node('p', role.rationale || 'No rationale supplied.', 'content'));
+        if (Array.isArray(role.evidence_ids) && role.evidence_ids.length) card.append(node('p', 'Evidence ids: ' + role.evidence_ids.join(', '), 'evidence-list'));
+        else card.append(node('p', 'No evidence ids returned.', 'hint'));
+        card.append(node('p', 'Gaps: ' + ((role.gaps || []).join('; ') || 'No gaps returned.'), 'hint'));
+      } else {
+        card.append(node('p', 'Custom title entered by the candidate; no profile evidence is implied.', 'hint'));
+      }
+      box.append(card);
+    }
+  }
+
+  function renderLanguages() {
+    const box = $('languageRows');
+    box.replaceChildren();
+    languageFilters.forEach((item, index) => {
+      const row = node('div', undefined, 'source-option');
+      row.append(node('strong', item.language + ' · ' + item.level));
+      const remove = node('button', 'Remove', 'secondary');
+      remove.type = 'button';
+      remove.setAttribute('aria-label', 'Remove ' + item.language + ' language filter');
+      remove.addEventListener('click', () => {
+        languageFilters.splice(index, 1);
+        renderLanguages();
+        markSearchDirty();
+      });
+      row.append(remove);
+      box.append(row);
+    });
+  }
+
+  function renderSources() {
+    const box = $('sourceOptions');
+    box.replaceChildren();
+    const selected = new Set(searchConfig?.sources || []);
+    for (const source of searchSources) {
+      const row = node('div', undefined, 'source-option');
+      const label = node('label');
+      const input = document.createElement('input');
+      input.type = 'checkbox';
+      input.value = source.id;
+      input.checked = selected.has(source.id);
+      label.append(input, node('strong', source.label || source.id));
+      row.append(label);
+      if (source.notes) row.append(node('p', source.notes));
+      const native = (source.native_filters || []).join(', ') || 'None listed';
+      const post = (source.post_filters || []).join(', ') || 'None listed';
+      row.append(node('p', 'Native filters: ' + native));
+      row.append(node('p', 'Post-filters: ' + post));
+      box.append(row);
+    }
+    if (!searchSources.length) box.append(node('p', 'Source capability catalog unavailable.', 'muted'));
+  }
+
+  function populateSearchForm(config) {
+    searchConfig = config || null;
+    $('searchForm').classList.toggle('hidden', !selectedIntake());
+    $('rolesPanel').classList.toggle('hidden', !selectedIntake());
+    const defaults = config || {};
+    const set = (id, value) => { $(id).value = value ?? ''; };
+    set('maxExperience', defaults.max_required_experience_years);
+    set('radiusKm', defaults.radius_km);
+    set('countries', (defaults.countries || []).join(', '));
+    set('cities', (defaults.cities || []).join(', '));
+    set('remoteRegions', (defaults.remote_regions || []).join(', '));
+    set('postedWithin', defaults.posted_within_days);
+    set('postedAfter', defaults.posted_after);
+    set('postedBefore', defaults.posted_before);
+    set('unknownPolicy', defaults.unknown_policy || 'review');
+    set('maxResults', defaults.max_results_per_source ?? 10);
+    set('atsBoards', (defaults.ats_board_urls || []).join('\n'));
+    $('excludeSeen').checked = Boolean(defaults.exclude_seen);
+    $('excludeApplied').checked = Boolean(defaults.exclude_applied);
+    setChecks('seniorityOptions', defaults.seniority);
+    setChecks('workModeOptions', defaults.work_modes);
+    setChecks('employmentOptions', defaults.employment_types);
+    languageFilters = (defaults.languages || []).map(item => ({language: item.language, level: item.level}));
+    renderLanguages();
+    renderSources();
+    renderRoleCards();
+    searchSnapshot = formSignature();
+    updateSearchButtons();
+  }
+
+  function markSearchDirty() {
+    updateSearchButtons();
+  }
+
+  function isCurrentSearchRequest(generation, intakeId) {
+    return generation === searchLoadGeneration && $('searchIntake').value === intakeId;
+  }
+
+  function searchRoleMessage(task, stale, savedConfigStale) {
+    const status = task ? 'Role task ' + formatStatus(task.status) : 'No role suggestions yet';
+    const error = task?.error ? ': ' + task.error : '';
+    if (stale) return {text: status + ' · stale because the approved profile revision changed. Suggest roles again before saving or running.' + error, tone: 'error'};
+    if (savedConfigStale) return {text: status + ' · saved filters are stale because the approved profile revision changed. Save current filters before running.', tone: 'error'};
+    if (['failed', 'cancelled'].includes(task?.status)) return {text: status + error, tone: 'error'};
+    if (task?.status === 'waiting_for_harness') return {text: status + error + '. Keep the configured harness claim loop running.', tone: ''};
+    return {text: status + error, tone: ''};
+  }
+
+  function applySearchResponse(data, history, intake) {
+    const preserveDraft = searchSnapshot !== '' && formSignature() !== searchSnapshot;
+    const draft = preserveDraft ? searchFormData() : null;
+    const previousSnapshot = searchSnapshot;
+    appliedUrls = new Set(history.applied_urls || []);
+    searchConfig = data.config || null;
+    rolesTask = data.roles_task || null;
+    rolesStale = Boolean(data.stale);
+    configStale = Boolean(data.config_stale);
+    if (draft) searchConfig = {...(searchConfig || {}), ...draft, roles_task_id: rolesTask?.id || draft.roles_task_id};
+    populateSearchForm(searchConfig);
+    searchConfig = data.config || null;
+    searchSnapshot = draft ? previousSnapshot : searchSnapshot;
+    updateSearchButtons();
+    const message = searchRoleMessage(rolesTask, rolesStale, configStale);
+    setMessage(message.text, message.tone);
+    $('rolesPanel').classList.remove('hidden');
+    $('searchForm').classList.remove('hidden');
+    renderSearchResults(intake);
+    searchLoadedSignature = searchStateSignature(intake.id);
+  }
+
+  async function loadSearch() {
+    const intake = selectedIntake();
+    const generation = ++searchLoadGeneration;
+    clearStageArtifacts();
+    if (!intake) {
+      loadedSearchIntakeId = '';
+      customRoles = [];
+      appliedUrls = new Set();
+      searchConfig = null;
+      rolesTask = null;
+      rolesStale = false;
+      configStale = false;
+      searchSnapshot = '';
+      $('rolesPanel').classList.add('hidden');
+      $('searchForm').classList.add('hidden');
+      $('searchResults').classList.add('hidden');
+      setMessage('Select an approved intake to load role suggestions and saved search settings.');
+      return;
+    }
+    if (loadedSearchIntakeId !== intake.id) {
+      loadedSearchIntakeId = intake.id;
+      customRoles = [];
+      appliedUrls = new Set();
+      searchConfig = null;
+      rolesTask = null;
+      rolesStale = false;
+      configStale = false;
+      searchSnapshot = '';
+      $('rolesPanel').classList.add('hidden');
+      $('searchForm').classList.add('hidden');
+      $('searchResults').classList.add('hidden');
+    }
+    $('suggestRoles').disabled = false;
+    $('refreshSearch').disabled = false;
+    setMessage('Loading current profile revision, role task, saved filters, and local application history…');
+    try {
+      const [data, history] = await Promise.all([
+        api('/api/intakes/' + encodeURIComponent(intake.id) + '/search'),
+        api('/api/intakes/' + encodeURIComponent(intake.id) + '/history').catch(() => ({applied_urls: []}))
+      ]);
+      if (!isCurrentSearchRequest(generation, intake.id)) return;
+      applySearchResponse(data, history, intake);
+    } catch (error) {
+      if (generation !== searchLoadGeneration) return;
+      setMessage('Could not load this intake search: ' + error.message, 'error');
+      $('suggestRoles').disabled = true;
+      $('refreshSearch').disabled = true;
+      searchConfig = null;
+      rolesTask = null;
+      populateSearchForm(null);
+      searchLoadedSignature = searchStateSignature(intake.id);
+    }
+  }
+
+  function updateIntakeOptions() {
+    const approved = tasks.filter(task => isIntake(task) && isApproved(task));
+    fillSelect('searchIntake', approved, 'Select an approved intake', task => (task.title || task.id) + ' · approved');
+  }
+  function searchStateSignature(intakeId) {
+    const profile = tasks.find(task => task.id === intakeId);
+    const roles = tasks.filter(task => task.kind === 'roles' && task.input?.intake_id === intakeId);
+    return [taskSignature(profile), ...roles.map(taskSignature)].join('||');
+  }
+
+
+  function searchTasks(intakeId) {
+    return tasks.filter(task => task.kind === 'search' && task.input?.intake_id === intakeId)
+      .sort((a, b) => String(b.created_at || '').localeCompare(String(a.created_at || '')));
+  }
+
+  function applicationToggle(job, intakeId) {
+    const applied = document.createElement('label');
+    applied.className = 'status-toggle';
+    const check = document.createElement('input');
+    check.type = 'checkbox';
+    check.checked = Boolean(appliedUrls.has(job.url) || job.application_status === 'applied' || job.applied);
+    check.disabled = !safeHttpUrl(job.url);
+    check.setAttribute('aria-label', 'Mark ' + (job.title || 'posting') + ' as applied locally');
+    check.addEventListener('change', async () => {
+      const status = check.checked ? 'applied' : 'not_applied';
+      check.disabled = true;
+      try {
+        await api('/api/intakes/' + encodeURIComponent(intakeId) + '/application-status', {
+          method: 'POST',
+          body: JSON.stringify({url: job.url, status})
+        });
+        if (status === 'applied') appliedUrls.add(job.url);
+        else appliedUrls.delete(job.url);
+        setMessage(status === 'applied' ? 'Marked applied in this intake’s local history.' : 'Removed applied status from this intake’s local history.', 'success');
+      } catch (error) {
+        check.checked = !check.checked;
+        setMessage('Could not update local applied status: ' + error.message, 'error');
+      } finally {
+        check.disabled = false;
+      }
+    });
+    applied.append(check, node('span', 'Applied'));
+    return applied;
+  }
+
+  function appendJobEvidence(card, job) {
+    if (!job.evidence?.length) return;
+    const details = node('details');
+    details.append(node('summary', 'Source evidence (' + job.evidence.length + ')'));
+    const list = node('ul');
+    for (const evidence of job.evidence) list.append(node('li', evidence.field + ': “' + evidence.quote + '” · page ' + evidence.page_id, 'job-evidence'));
+    details.append(list);
+    card.append(details);
+  }
+
+  function appendJobFields(card, job) {
+    const meta = [job.company, job.location, job.source_id, job.work_mode, job.employment_type, job.posted_at].filter(Boolean).join(' · ');
+    if (meta) card.append(node('p', meta, 'job-meta'));
+    const href = safeHttpUrl(job.url);
+    if (href) {
+      const link = node('a', job.url);
+      link.href = href;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      card.append(link);
+    }
+    if (job.matched_role_id) card.append(node('p', 'Matched role id: ' + job.matched_role_id, 'job-meta'));
+    if (job.required_experience_years !== null && job.required_experience_years !== undefined) card.append(node('p', 'Required experience: ' + job.required_experience_years + ' years', 'job-meta'));
+    if (job.remote_regions?.length) card.append(node('p', 'Remote regions: ' + job.remote_regions.join(', '), 'job-meta'));
+    if (job.languages?.length) card.append(node('p', 'Languages: ' + job.languages.map(item => item.language + ' ' + item.level).join(', '), 'job-meta'));
+    if (job.notes?.length) card.append(node('p', job.notes.join('; '), 'hint'));
+    if (job.exclusion_reasons?.length || job.review_reasons?.length) card.append(node('p', [...(job.exclusion_reasons || []), ...(job.review_reasons || [])].join('; '), 'hint'));
+    appendJobEvidence(card, job);
+  }
+
+  function appendJobGroup(container, title, jobs, intakeId) {
+    const section = node('section');
+    section.append(node('h4', title + ' (' + jobs.length + ')'));
+    if (!jobs.length) section.append(node('p', 'No postings in this group.', 'muted'));
+    for (const job of jobs) {
+      const card = node('article', undefined, 'job-card');
+      const heading = node('header');
+      heading.append(node('strong', job.title || 'Untitled posting'), applicationToggle(job, intakeId));
+      card.append(heading);
+      appendJobFields(card, job);
+      section.append(card);
+    }
+    container.append(section);
+  }
+
+  function appendListingLinks(container, urls) {
+    if (!urls?.length) return;
+    const list = node('ul');
+    for (const value of urls) {
+      const href = safeHttpUrl(value);
+      const item = node('li');
+      if (href) {
+        const link = node('a', value);
+        link.href = href;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        item.append(link);
+      } else item.textContent = value;
+      list.append(item);
+    }
+    container.append(list);
+  }
+
+  function appendSourceProgress(progress, task) {
+    const acquisition = task.input?.acquisition || task.result || {};
+    for (const source of acquisition.source_results || task.result?.source_results || []) {
+      const failed = ['error', 'blocked'].includes(source.status);
+      const row = node('article', undefined, 'source-result' + (failed ? ' error' : ''));
+      row.append(node('strong', source.source_id + ' · ' + formatStatus(source.status)));
+      row.append(node('p', (source.discovered_count ?? 'Unknown') + ' discovered · ' + (source.captured_count ?? 'Unknown') + ' detail pages captured'));
+      if (source.unsupported_filters?.length) row.append(node('p', 'Unsupported native filters (post-check/unknown): ' + source.unsupported_filters.join(', '), 'hint'));
+      if (source.error) row.append(node('p', source.error, 'source-error'));
+      appendListingLinks(row, source.listing_urls);
+      progress.append(row);
+    }
+  }
+
+  function jobDecision(job) {
+    return String(job.decision || job.status || '').toLowerCase();
+  }
+
+  function appendJobGroups(results, task, intakeId) {
+    const jobs = task.result.jobs;
+    const matches = jobs.filter(job => ['match', 'matches', 'pass', 'eligible'].includes(jobDecision(job)));
+    const reviews = jobs.filter(job => ['review', 'needs_review'].includes(jobDecision(job)));
+    const excluded = jobs.filter(job => ['excluded', 'exclude'].includes(jobDecision(job)));
+    appendJobGroup(results, 'Matches', matches, intakeId);
+    appendJobGroup(results, 'Needs review', reviews, intakeId);
+    appendJobGroup(results, 'Excluded', excluded, intakeId);
+    const unclassified = jobs.filter(job => !matches.includes(job) && !reviews.includes(job) && !excluded.includes(job));
+    if (unclassified.length) appendJobGroup(results, 'Unclassified — requires review', unclassified, intakeId);
+    if (!jobs.length) results.append(node('p', 'No verified postings were returned. This is not proof that no jobs exist.', 'hint'));
+  }
+
+  function appendSearchArtifacts(results, task, intake, generation) {
+    for (const artifact of taskArtifacts(task)) {
+      if (artifact.media_type !== 'image/png') continue;
+      const key = task.id + ':' + artifact.name;
+      const url = searchArtifactUrls.get(key);
+      if (url && url !== 'loading') {
+        const link = node('a', 'Open captured browser screenshot: ' + artifact.name);
+        link.href = url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        results.append(link);
+        const image = node('img');
+        image.src = url;
+        image.alt = 'Screenshot captured from visible browser search';
+        image.className = 'preview';
+        results.append(image);
+        continue;
+      }
+      if (searchArtifactUrls.has(key)) continue;
+      searchArtifactUrls.set(key, 'loading');
+      void asset(task, artifact.name).then(url => {
+        if (generation !== stageArtifactGeneration || $('searchIntake').value !== intake.id) {
+          URL.revokeObjectURL(url);
+          searchArtifactUrls.delete(key);
+          return;
+        }
+        searchArtifactUrls.set(key, url);
+        stageArtifactUrls.push(url);
+      }).catch(error => {
+        searchArtifactUrls.delete(key);
+        setMessage('Captured screenshot unavailable: ' + error.message, 'error');
+      });
+    }
+  }
+
+  function renderSearchResults(intake) {
+    const runs = searchTasks(intake.id);
+    const box = $('searchResults');
+    box.classList.toggle('hidden', !runs.length);
+    if (!runs.length) return;
+    const task = runs[0];
+    const generation = stageArtifactGeneration;
+    const progress = $('runProgress');
+    progress.replaceChildren();
+    progress.append(node('p', 'Run status: ' + formatStatus(task.status) + (task.input?.config_revision ? ' · configuration revision ' + task.input.config_revision : ''), 'stage-message'));
+    if (task.error) progress.append(node('p', task.error, 'source-error'));
+    appendSourceProgress(progress, task);
+    const results = $('runResults');
+    results.replaceChildren();
+    if (!task.result?.jobs) {
+      if (task.status === 'waiting_for_harness') results.append(node('p', 'Visible-page acquisition is complete; waiting for your configured harness to assess captured pages.', 'stage-message'));
+      else if (task.status === 'completed') results.append(node('p', 'No verified postings were returned. This is not proof that no jobs exist.', 'hint'));
+      appendSearchArtifacts(results, task, intake, generation);
+      return;
+    }
+    appendJobGroups(results, task, intake.id);
+    appendSearchArtifacts(results, task, intake, generation);
+  }
+
+  function invalidRadius(config) {
+    return config.radius_km !== null && (!Number.isFinite(config.radius_km) || !config.cities.length || config.radius_km <= 0);
+  }
+
+  function invalidResultLimit(config) {
+    return !Number.isInteger(config.max_results_per_source) || config.max_results_per_source < 1 || config.max_results_per_source > 50;
+  }
+
+  function invalidExperience(config) {
+    return config.max_required_experience_years !== null &&
+      (!Number.isFinite(config.max_required_experience_years) || config.max_required_experience_years < 0);
+  }
+
+  function validateSearch(config) {
+    return [
+      [!currentRoleReady(), 'Wait for role suggestions to complete for the current approved profile revision.'],
+      [!config.roles.length, 'Select or add at least one role.'],
+      [!config.sources.length, 'Select at least one job source.'],
+      [invalidRadius(config), 'A positive city radius requires at least one city.'],
+      [invalidResultLimit(config), 'Maximum results per source must be an integer from 1 to 50.'],
+      [invalidExperience(config), 'Maximum experience must be a non-negative number.'],
+      [config.roles.some(role => !role.title || !role.search_terms.length), 'Every selected role needs a title and at least one search term.'],
+      [config.posted_within_days !== null && (!Number.isInteger(config.posted_within_days) || config.posted_within_days < 1), 'Posting age must be a positive whole number of days.'],
+      [config.posted_after && config.posted_before && config.posted_after > config.posted_before, 'Posted-after date must not be later than posted-before.']
+    ].filter(([invalid]) => invalid).map(([, message]) => message);
+  }
+  async function loadSourceCatalog() {
+    try {
+      const data = await api('/api/search/sources');
+      searchSources = Array.isArray(data.sources) ? data.sources : [];
+      renderSources();
+    } catch (error) {
+      searchSources = [];
+      renderSources();
+      setMessage('Source capabilities could not be loaded: ' + error.message, 'error');
+    }
+  }
+
+  async function suggestRoles() {
+    const intake = selectedIntake();
+    if (!intake || searchBusy) return;
+    searchBusy = true;
+    updateSearchButtons();
+    $('suggestRoles').disabled = true;
+    setMessage('Requesting evidence-grounded role suggestions for the approved profile revision…');
+    try {
+      const data = await api('/api/intakes/' + encodeURIComponent(intake.id) + '/roles', {
+        method: 'POST',
+        body: JSON.stringify({refresh: true})
+      });
+      const task = data.task || data;
+      rolesStale = true;
+      setMessage(task.status === 'waiting_for_harness'
+        ? 'Role suggestion task is waiting for your configured model. Keep its claim loop servicing the queue.'
+        : 'Role suggestion task created: ' + formatStatus(task.status) + '.');
+      searchLoadedSignature = '';
+      await refresh();
+    } catch (error) {
+      setMessage('Could not request role suggestions: ' + error.message, 'error');
+    } finally {
+      searchBusy = false;
+      $('suggestRoles').disabled = !selectedIntake();
+      updateSearchButtons();
+    }
+  }
+
+  async function saveSearch() {
+    const intake = selectedIntake();
+    if (!intake || searchBusy) return;
+    const config = searchFormData();
+    const errors = validateSearch(config);
+    const errorBox = $('searchFormError');
+    errorBox.textContent = errors.join('\n');
+    errorBox.classList.toggle('hidden', !errors.length);
+    if (errors.length) return;
+    searchBusy = true;
+    updateSearchButtons();
+    try {
+      const data = await api('/api/intakes/' + encodeURIComponent(intake.id) + '/search', {
+        method: 'PUT',
+        body: JSON.stringify(config)
+      });
+      searchConfig = data.config;
+      populateSearchForm(searchConfig);
+      setMessage('Search settings saved. Browsing has not started.', 'success');
+      searchLoadedSignature = searchStateSignature(intake.id);
+    } catch (error) {
+      setMessage('Could not save search settings: ' + error.message, 'error');
+    } finally {
+      searchBusy = false;
+      updateSearchButtons();
+    }
+  }
+
+  async function startSearch() {
+    const intake = selectedIntake();
+    if (!intake || searchBusy) return;
+    if (!searchConfig || formSignature() !== searchSnapshot || !currentRoleReady()) {
+      updateSearchButtons();
+      setMessage('Save current settings for the current approved profile revision before starting a search.', 'error');
+      return;
+    }
+    searchBusy = true;
+    updateSearchButtons();
+    setMessage('Starting a fresh visible-browser search with saved configuration revision ' + searchConfig.revision + '…');
+    try {
+      const task = await api('/api/intakes/' + encodeURIComponent(intake.id) + '/search/run', {
+        method: 'POST',
+        body: JSON.stringify({})
+      });
+      selected = task.id;
+      searchLoadedSignature = '';
+      await refresh();
+      renderSearchResults(intake);
+    } catch (error) {
+      setMessage('Could not start search: ' + error.message, 'error');
+    } finally {
+      searchBusy = false;
+      updateSearchButtons();
+    }
+  }
+
+  function addCustomRole() {
+    if (!currentRoleReady()) {
+      setMessage('Wait for current role suggestions to complete before adding a custom role.', 'error');
+      return;
+    }
+    const title = $('customRoleTitle').value.trim();
+    if (!title) {
+      $('customRoleTitle').focus();
+      setMessage('Enter a custom role title.', 'error');
+      return;
+    }
+    const search_terms = commaList($('customRoleTerms').value);
+    customRoles.push({id: 'custom-' + crypto.randomUUID(), title, search_terms: search_terms.length ? search_terms : [title], custom: true, evidence_ids: [], gaps: []});
+    $('customRoleTitle').value = '';
+    $('customRoleTerms').value = '';
+    renderRoleCards();
+    const cards = [...$('rolesList').querySelectorAll('[data-role-card]')];
+    const added = cards.at(-1);
+    if (added) added.querySelector('[data-role-selected]').checked = true;
+    markSearchDirty();
+  }
+
+  function addLanguage() {
+    const language = $('languageName').value.trim();
+    if (!language) {
+      $('languageName').focus();
+      return;
+    }
+    if (languageFilters.some(item => item.language.toLowerCase() === language.toLowerCase())) {
+      setMessage('That language already has a filter. Edit or remove the existing row.', 'error');
+      return;
+    }
+    languageFilters.push({language, level: $('languageLevel').value});
+    $('languageName').value = '';
+    renderLanguages();
+    markSearchDirty();
+  }
+  async function discardSearchDraft() {
+    if (searchSnapshot && formSignature() !== searchSnapshot && !window.confirm('Discard unsaved search edits and reload this intake?')) return;
+    searchBusy = true;
+    searchSnapshot = '';
+    searchLoadedSignature = '';
+    updateSearchButtons();
+    try {
+      await loadSearch();
+    } finally {
+      searchBusy = false;
+      updateSearchButtons();
+    }
+  }
+
+
+  function bindSearchControls() {
+    optionChecks('seniorityOptions', SEARCH_OPTIONS.seniority);
+    optionChecks('workModeOptions', SEARCH_OPTIONS.workModes);
+    optionChecks('employmentOptions', SEARCH_OPTIONS.employment);
+    $('searchIntake').addEventListener('change', () => {
+      searchLoadedSignature = '';
+      void loadSearch();
+    });
+    $('suggestRoles').addEventListener('click', suggestRoles);
+    $('refreshSearch').addEventListener('click', () => {
+      searchLoadedSignature = '';
+      void loadSearch();
+    });
+    $('addCustomRole').addEventListener('click', addCustomRole);
+    $('addLanguage').addEventListener('click', addLanguage);
+    $('saveSearch').addEventListener('click', saveSearch);
+    $('runSearch').addEventListener('click', startSearch);
+    $('discardSearchDraft').addEventListener('click', discardSearchDraft);
+    $('searchForm').addEventListener('input', markSearchDirty);
+    $('searchForm').addEventListener('change', markSearchDirty);
+    $('rolesList').addEventListener('input', markSearchDirty);
+    $('rolesList').addEventListener('change', markSearchDirty);
+  }
+
+
   async function refresh() {
     if (polling) return;
     polling = true;
     try {
       const state = await api('/api/state');
       tasks = state.tasks || [];
+      updateIntakeOptions();
+      const intake = selectedIntake();
+      const signature = intake ? searchStateSignature(intake.id) : '';
+      if (intake && signature !== searchLoadedSignature) void loadSearch();
+      else if (!intake && loadedSearchIntakeId) void loadSearch();
+      if (intake) renderSearchResults(intake);
       const harness = state.harness || {};
       const lastSeen = harness.last_seen ? new Date(harness.last_seen).toLocaleTimeString() : 'never';
       setStatus(
@@ -941,8 +1756,13 @@
 
   $('profileSelect').addEventListener('change', updateResumeButton);
   $('jobSelect').addEventListener('change', updateResumeButton);
+  bindSearchControls();
   $('refresh').addEventListener('click', refresh);
-  window.addEventListener('pagehide', releaseDetailUrls);
+  window.addEventListener('pagehide', () => {
+    releaseDetailUrls();
+    clearStageArtifacts();
+  });
+  void loadSourceCatalog();
   void refresh();
   setInterval(refresh, 1000);
 })();

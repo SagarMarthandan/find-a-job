@@ -1,14 +1,16 @@
 # Unified job-finding application
 
-Status: intake-first foundation is the current priority; job-search/Jobscraper implementation is explicitly deferred pending user direction. This plan remains the broader proposed design.
+Status: Stages 1 and 2 are implemented and verified against synthetic candidates. Candidate intake, source-grounded profile approval, role suggestions and visible-browser job search now share one task store and CLI/API. Resume generation remains the later stage. This plan remains the broader proposed design.
 
 ## Current priority and deferred scope
 
-The first workflow is candidate intake from uploaded resumes, all supplied project catalogs, candidate-entered facts, and explicitly selected public GitHub URLs. Consolidate those sources into one evidence-linked profile, validate source-specific quotes, support correction and explicit approval, and gate resume generation on approval. Keep every source's identity and failure visible.
+The first workflow is candidate intake from uploaded resumes, all supplied project catalogs, candidate-entered facts, and explicitly selected public GitHub URLs. Consolidate those sources into one evidence-linked profile, validate source-specific quotes, support correction and explicit approval, and gate later stages on approval. Keep every source's identity and failure visible.
+
+Stage 2 uses that approved profile to suggest evidence-cited roles, then persists candidate-selected roles and filters per intake. A saved configuration drives actual visible-browser acquisition from the eight native source adapters. Role and search results remain candidate/intake-scoped; no legacy personal role, country, age or experience defaults apply.
 
 Supported intake formats are PDF, DOCX, ODT, XLSX, PPTX, RTF, Markdown/TXT, JSON/YAML, CSV/TSV, HTML/XML, and the configured UTF-8 text suffixes PY, JS, TS, Java, SQL, TOML, and INI. Limits: 25 sources, 10 MiB per file, 50 MiB total upload bytes, 100000 extracted characters per document, 1 MB aggregate extracted text, and 40 MiB expanded Office ZIP content. Scanned PDFs require OCR; unsupported sources remain attached as failed entries.
 
-Do not extend `Jobscraper/`, implement job search, or import its personal catalogs as part of intake foundation work. Search and resume tailoring remain later-stage scope; preserve legacy source trees and originals until separately authorized migration.
+Do not delete or rewrite the legacy `Jobscraper/` or `llm-cv/` trees until the wider migration acceptance in Phase 4. The unified search path does not invoke the legacy launcher or import its personal catalogs.
 
 ## Goal
 
@@ -22,9 +24,9 @@ Remove the application's dependency on Sagar's bundled resume, project catalog, 
 
 | Area | Observed implementation | Proposed treatment |
 |---|---|---|
-| Search | `Jobscraper/apify_job_search.py`; README documents eight sources | Reuse source integrations behind a shared search interface; verify each integration before enabling it |
-| Search policies | README and `ARCHITECTURE.md` document data/AI roles, Germany eligibility, two-year ceiling and Hamburg/Kiel student restrictions | Replace candidate-specific policies with reviewed profile preferences; preserve conservative handling of unknown eligibility |
-| Posting identity | `Jobscraper/job_identity.py`, documented in architecture | Reuse URL normalization and dedup logic; separate posting identity from candidate application history |
+| Search | Legacy `Jobscraper/apify_job_search.py`; unified `src/find_a_job/job_sources.py` now implements eight visible-browser adapters | Unified adapters reuse native public search URLs and evidence-preserving detail capture; legacy API/Apify path is not invoked. Live verification is recorded per source |
+| Search policies | Driver filters are candidate-configured (roles, experience, country/city, remote, dates, employment, languages, history) | Legacy data/AI, Germany-only, two-year and Hamburg/Kiel restrictions are not defaults; unknown remote/radius eligibility stays reviewable |
+| Posting identity | Legacy `Jobscraper/job_identity.py`; pure unified `src/find_a_job/job_identity.py` | Reuse URL normalization and dedup identity; candidate application history remains intake-scoped |
 | Verification | `Jobscraper/verify_jobs.py`; README says it requires OMP typed `judge_batch` and cannot complete through its standalone CLI | Introduce an explicit application judgment interface; resolve runtime dependency before claiming standalone operation |
 | Resume workflow | `llm-cv/README.md` documents JD analysis, project selection, resume/cover-letter writing and PDF compilation | Reuse useful stages and renderers after removing candidate-specific inputs |
 | Candidate data | `llm-cv/config.py` contains personal defaults, assets and city mappings | Read only the active candidate profile; no personal fallback defaults |
@@ -33,6 +35,18 @@ Remove the application's dependency on Sagar's bundled resume, project catalog, 
 | Model selection | Resume README says calls currently use OMP's configured default model | Honor the runtime user's selected model through a portable interface; remove mandatory OMP/default-model coupling |
 
 These are inspection findings, not live integration verification. Existing source availability, provider authentication, PDF toolchain and model identifiers still need runtime checks.
+
+## Stage 2 observed implementation
+
+- `roles.py` builds a versioned prompt from the approved profile and full source evidence. Role tasks are bound to the intake/profile revision; completion validates unique ids/titles, search terms, evidence IDs, rationale and gaps. The cache key includes intake, revision, claimed model and prompt/schema version; refresh and other models bypass it.
+- `search.py` validates the complete configuration with unconstrained defaults, rejects unknown fields/source IDs, and evaluates archived assessments deterministically. Filter outcomes are tri-state. Numeric experience, posting dates and language levels require field-specific quotes that occur on the exact detail page; core title/company/location values must occur in their own quotes, years ranges anchor to the minimum required bound, and date-only/relative posting quotes use precision intervals rather than an invented hour. Cities constrain the selected city, countries and cities are separate constraints, and matching uses word/phrase boundaries plus a start-of-place rule (`York` ≠ `New York`, `Kiel` ≠ `Kielce`). Duplicate normalized URLs merge role/source/evidence.
+- `job_sources.py` exports the fixed catalog and `run_search(session, config, artifact_dir, cancelled)`. It uses only the visible `BrowserSession`, native listing URLs, source-host allowlists (including per-country Indeed domains), bounded detail capture, flat artifact names and explicit `ok`/`empty`/`error`/`blocked` statuses.
+- `api.py` persists role/config/search tasks, acquisition snapshots and candidate-scoped history, and rechecks approval/revision at claim and completion. All-source failure is a failed search, not an empty success. Captured screenshots render through the dashboard artifact route.
+- Observed 2026-10-21: 49 tests passed after the Stage 2 correction. A synthetic approved intake produced roles, cached the same-model result, isolated a different model, saved a custom role plus filters, and ran a live visible-browser Arbeitnow search (69 links discovered, two detail pages captured with screenshots). A synthetic host assessment completed and was deterministically `review` because experience was unknown. The dashboard rendered roles, config revision, source status, captured screenshots and results. The correction smoke used a fresh workspace: the dashboard edited the suggested role title to `Platform Engineer`, saved it under the suggestion id as revision 1, and the generated Arbeitnow listing URLs contained the edited title and aliases. This correction smoke did not browse a live job source.
+- Final smoke 2026-10-21: all 49 tests passed (8.252 s). The actual CLI and dashboard completed role suggestions, edited a suggested role title and saved filters for a synthetic approved intake, with no browser navigation before Start. A live headed Arbeitnow run discovered 70 listing links, captured 10 detail pages and 24 artifacts, and assessed 3 jobs as 0 `match`, 2 `review`, 1 `excluded`; all 12 screenshots loaded. The other seven adapters were not live-verified.
+- Known unresolved parser false negatives: the live smoke did not recognize an explicit `5+ years` requirement under a multiline `Requirements` heading, and treated compact posting-age labels (`1w`, `3w`, `1mo`) as unknown. These findings are documented but not fixed; they reduce evidence coverage rather than proving the requirement absent.
+- Known Stage 2 limits: configured radius remains unknown because adapters expose no distance evidence; listing adapters do not paginate beyond the configured detail cap; live verification is limited to Arbeitnow. The other seven adapters remain URL/capability-checked only.
+- Live-unverified adapters: LinkedIn, Indeed, XING, Stepstone, Wellfound, EU Remote, ATS. Their builders and host/path checks were exercised; no access success is claimed. Login/rate-limit/captcha responses remain blocked/error states.
 
 ## Proposed product boundary
 
@@ -134,7 +148,7 @@ Keep extracted suggestions separate from confirmed facts. A candidate correction
 
 ### Repository development only
 
-Development orchestration and planning belong to OpenAI-GPT-Sol-6.1. OpenAI-GPT-Luna-6 or OpencodeGo-Deepseek-Flash-v4.1 execute scripts, implementation and delegated checks under `AGENTS.md`. Verify exact provider-qualified development worker IDs and availability before implementation. Development launchers enforce this policy; they must not export its model allowlist into the delivered skill or application.
+Development orchestration and planning belong to OpenAI-GPT-Sol-6.1. Only OpencodeGo-Deepseek-Flash-v4.1 (`opencode-go/deepseek-v4.1-flash`) executes scripts, implementation and delegated checks under `AGENTS.md`; GPT-Luna-6 is not a fallback. Verify the exact provider-qualified development worker ID and availability before implementation. Development launchers enforce this policy; they must not export its model allowlist into the delivered skill or application.
 
 ### Delivered skill and application
 
@@ -225,9 +239,9 @@ Acceptance: two synthetic candidates produce distinct profiles with no Sagar def
 
 ### Phase 2: profile-driven search
 
-Pass the shared preferences contract through fetchers and verification. Replace hardcoded role/location/experience policies and import useful posting-identity behavior.
+Implemented for the unified package: shared role/filter config, eight visible-browser source adapters, immutable acquisition snapshots, evidence validation, deterministic eligibility and candidate-scoped history. Live verification currently covers Arbeitnow only.
 
-Acceptance: materially different candidate profiles produce different approved search terms; an explicit preference change changes eligibility; cross-profile history does not suppress another candidate's results; partial outages and duplicate postings remain visible and correct.
+Acceptance: materially different candidate profiles produce different approved search terms; an explicit preference change changes eligibility; cross-profile history does not suppress another candidate's results; partial outages and duplicate postings remain visible and correct. Remaining: exercise the other seven adapters against live public pages and record their observed access limits.
 
 ### Phase 3: evidence-driven resume generation
 

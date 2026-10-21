@@ -5,11 +5,11 @@
 This section governs agents developing this repository only. It does not restrict end users of the delivered skill, CLI or application.
 
 - OpenAI-GPT-Sol-6.1 is the lead orchestrator. It owns planning, decomposition, architecture decisions, worker assignment, evidence review and final acceptance.
-- OpenAI-GPT-Luna-6 and OpencodeGo-Deepseek-Flash-v4.1 are the only approved execution workers. Either may implement changes, write scripts, run commands, exercise the application, run checks and maintain documentation.
+- OpencodeGo-Deepseek-Flash-v4.1 (`opencode-go/deepseek-v4.1-flash`) is the only approved execution-worker model. Use it for implementation, script writing, commands, application exercises, checks and documentation maintenance. GPT-Luna-6 is not an execution worker or fallback.
 - Keep frontier-model work focused on orchestration, planning and review. The orchestrator must delegate routine execution, bulk inspection, script writing, implementation and repetitive maintenance to approved workers.
 - The orchestrator may inspect enough source and worker evidence to define contracts and assess correctness. It must not take over execution because a worker fails or is unavailable.
 - These names express the requested model policy. Verify exact provider-qualified runtime identifiers before assigning work. Never guess an alias or claim a different model satisfies the policy.
-- If neither approved worker is available, stop execution and report the missing model/provider or delegation mechanism. Ask the user to enable an approved worker or explicitly amend this policy. No silent fallback to the orchestrator, a default model, or another worker.
+- If the approved DeepSeek worker is unavailable, stop execution and report the missing model/provider or delegation mechanism. Ask the user to enable it or explicitly amend this policy. No silent fallback to Luna, the orchestrator, a default model, or another worker model.
 - A prompt alone does not enforce model selection. Development launchers must require an approved development worker ID and retain model identity with run evidence. Never apply this allowlist to product runtime models or portability test subjects.
 
 ## Assignment and integration

@@ -114,6 +114,16 @@ def _task(args: argparse.Namespace) -> None:
     print(json.dumps(_request("/api/state"), ensure_ascii=False, indent=2))
 
 
+def _context(args: argparse.Namespace) -> None:
+    from .cache import ContextUnavailableError, context_cached
+
+    try:
+        payload = context_cached(_data_dir(), args.intake_id, refresh=args.refresh)
+    except ContextUnavailableError as exc:
+        raise SystemExit(str(exc)) from exc
+    print(json.dumps(payload, ensure_ascii=False, indent=2))
+
+
 def _heartbeat(_: argparse.Namespace) -> None:
     print(json.dumps(_request("/api/harness/heartbeat", {}), ensure_ascii=False))
 
@@ -159,6 +169,10 @@ def main() -> None:
     fail.set_defaults(run=_fail)
     state = commands.add_parser("state", help="Print authenticated task state")
     state.set_defaults(run=_task)
+    context = commands.add_parser("context", help="Print an approved intake's local inference context without starting the service")
+    context.add_argument("--intake-id", required=True)
+    context.add_argument("--refresh", action="store_true", help="Rebuild the cached context for its current approved revision")
+    context.set_defaults(run=_context)
     heartbeat = commands.add_parser("heartbeat", help="Refresh harness connection status during long-running model work")
     heartbeat.set_defaults(run=_heartbeat)
     doctor = commands.add_parser("doctor", help="Check required packages, DISPLAY, and Playwright Chromium")
